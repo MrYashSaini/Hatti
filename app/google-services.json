@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "254007106836",
+    "project_id": "hatti-database",
+    "storage_bucket": "hatti-database.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254007106836:android:8db0a95a547ee74c22b601",
+        "android_client_info": {
+          "package_name": "com.example.hatti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254007106836-mbjrq104jsn9om24svlaod76cnefkfg8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNEC62NvwjEQzyHDsPcD-uBlAmuhDRTT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254007106836-mbjrq104jsn9om24svlaod76cnefkfg8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

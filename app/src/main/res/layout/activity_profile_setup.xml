@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_gray_color"
+    tools:context=".account.ProfileSetupActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-220dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:src="@drawable/logo" />
+
+            <EditText
+                android:id="@+id/etNameForm"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:autofillHints="name"
+                android:background="@drawable/entrybox"
+                android:drawableStart="@drawable/ic_baseline_person_24"
+                android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/name_bg"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="Name"
+                android:textColor="@color/foreground_color" />
+
+            <EditText
+                android:id="@+id/etGmailForm"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="50dp"
+                android:autofillHints="emailAddress"
+                android:background="@drawable/entrybox"
+                android:drawableStart="@drawable/ic_baseline_mail_24"
+                android:inputType="textEmailAddress"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/name_bg"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="Gmail Id"
+                android:textColor="@color/foreground_color" />
+
+            <EditText
+                android:id="@+id/etPhoneForm"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="50dp"
+                android:autofillHints="phone"
+                android:background="@drawable/entrybox"
+                android:drawableStart="@drawable/ic_baseline_local_phone_24"
+                android:inputType="phone"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/name_bg"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="Phone No."
+                android:textColor="@color/foreground_color" />
+
+            <EditText
+                android:id="@+id/etStateForm"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/entrybox"
+                android:drawableStart="@drawable/ic_baseline_location_city_24"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/name_bg"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="State"
+                android:textColor="@color/foreground_color" />
+
+            <EditText
+                android:id="@+id/etCityForm"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/entrybox"
+                android:drawableStart="@drawable/ic_baseline_location_city_24"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/name_bg"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="City"
+                android:textColor="@color/foreground_color" />
+
+            <EditText
+                android:id="@+id/etAddressForm"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/entrybox"
+                android:drawableStart="@drawable/ic_baseline_location_on_24"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/name_bg"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="Full Address"
+                android:textColor="@color/foreground_color" />
+
+            <EditText
+                android:id="@+id/etDobForm"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/entrybox"
+                android:drawableStart="@drawable/ic_baseline_calendar_month_24"
+                android:inputType="date"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/name_bg"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="DOB"
+                android:textColor="@color/foreground_color" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="50dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:buttonTint="@color/foreground_color"
+                    android:paddingStart="10dp"
+                    android:text="Male"
+                    android:textColor="@color/foreground_color"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/rbFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="70dp"
+                    android:buttonTint="@color/foreground_color"
+                    android:paddingStart="10dp"
+                    android:text="Female"
+                    android:textColor="@color/foreground_color"
+                    android:textSize="16sp" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/foreground_color"
+                android:text="Next"
+                android:textColor="@color/background_gray_color" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
