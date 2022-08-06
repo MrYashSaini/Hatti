@@ -3,16 +3,44 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Lenovo/.gradle/caches/transforms-3/c8f8ac3ea1ae0abffa1248d5d29a2cda/transformed/car-ui-lib-2.2.1/res/drawable/car_ui_icon_add.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable-v24/ic_baseline_visibility_off_24.xml" value="0.2555" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/circular_view.xml" value="0.23" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.2555" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_category_24.xml" value="0.2555" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_location_city_24.xml" value="0.2555" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.2555" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.23" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.2555" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_visibility_24.xml" value="0.2555" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_visibility_off_24.xml" value="0.23" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.23" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/name_bg.xml" value="0.23" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/search_bar_bg.xml" value="0.2545" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/side_nav_bar.xml" value="0.23" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/slider_background.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_create_account.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_login.xml" value="0.2359375" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_profile_setup.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/app_bar_main.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/banner_layout.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/category_item.xml" value="0.6" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_category.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_notification.xml" value="0.13802083333333334" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_order.xml" value="0.2212962962962963" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/horizontal_scroll_item_layout.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/horizontal_scroll_layout.xml" value="0.39922854387656703" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/nav_header_main.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/slider_layout.xml" value="0.1875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/menu/main.xml" value="0.25" />
       </map>
     </option>
   </component>
