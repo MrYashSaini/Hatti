@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="8dp"
-    android:paddingBottom="8dp"
-    android:elevation="3dp"
-    android:background="@drawable/slider_background"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/product_details_bg"
+    android:elevation="3dp"
+    android:paddingBottom="8dp">
 
 
     <TextView
@@ -15,9 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/category_name"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnHorizontalScrollViewButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnHorizontalScrollViewButton" />
@@ -28,11 +27,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textSize="12sp"
         android:backgroundTint="@color/foreground_color"
-        android:textColor="@color/background_gray_color"
         android:text="@string/see_all"
         android:textAllCaps="false"
+        android:textColor="@color/background_gray_color"
+        android:textSize="12sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

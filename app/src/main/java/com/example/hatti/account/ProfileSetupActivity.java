@@ -44,6 +44,15 @@ public class ProfileSetupActivity extends AppCompatActivity {
         rbMale = findViewById(R.id.rbMale);
         rbFemale = findViewById(R.id.rbFemale);
 
+        String btnName = getIntent().getStringExtra("activity");
+        if (btnName!="Next"){
+            next.setText("update");
+        }
+        else {
+            next.setText(btnName);
+        }
+//        startActivity(new Intent(ProfileSetupActivity.this, MainActivity.class));
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

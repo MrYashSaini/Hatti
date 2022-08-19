@@ -22,11 +22,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_gravity="bottom"
+        android:elevation="3dp"
         android:layout_marginEnd="0dp"
         android:background="?android:attr/windowBackground"
         app:itemIconTint="@color/foreground_color"
         app:itemTextColor="@color/background_gray_color"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"
+
+        />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

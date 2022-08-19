@@ -27,4 +27,25 @@
         android:name="com.example.hatti.fragments.NotificationFragment"
         android:label="@string/menu_notification"
         tools:layout="@layout/fragment_notification" />
+    <activity
+        android:id="@+id/nav_Account"
+        android:name="com.example.hatti.account.ProfileSetupActivity"
+        android:label="@string/menu_account"
+        tools:layout="@layout/activity_profile_setup"/>
+    <activity
+        android:id="@+id/nav_logout"
+        android:name="com.example.hatti.activity.LogOutActivity"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/activity_log_out"/>
+    <activity
+        android:id="@+id/nav_contact"
+        android:name="com.example.hatti.activity.ContactActivity"
+        android:label="@string/menu_contact"
+        tools:layout="@layout/activity_contact"/>
+    <activity
+        android:id="@+id/nav_about"
+        android:name="com.example.hatti.activity.AboutActivity"
+        android:label="@string/menu_about"
+        tools:layout="@layout/activity_about"/>
+
 </navigation>

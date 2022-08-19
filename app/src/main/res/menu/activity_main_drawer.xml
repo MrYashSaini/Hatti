@@ -16,9 +16,35 @@
             android:id="@+id/nav_order"
             android:icon="@drawable/order"
             android:title="@string/menu_order" />
+
+        <item
+            android:id="@+id/nav_myList"
+            android:icon="@drawable/ic_baseline_list"
+            android:title="@string/menu_myList" />
+        <item
+            android:id="@+id/nav_payment_wallet"
+            android:icon="@drawable/ic_baseline_account_balance_wallet"
+            android:title="@string/menu_payment_wallet" />
         <item
             android:id="@+id/nav_notification"
             android:icon="@drawable/ic_baseline_notifications_24"
             android:title="@string/menu_notification" />
+        <item
+            android:id="@+id/nav_Account"
+            android:icon="@drawable/ic_baseline_account_circle"
+            android:title="@string/menu_account" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_baseline_local_phone_24"
+            android:title="@string/menu_contact" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_baseline_info_24"
+            android:title="@string/menu_about" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_baseline_exit_to_app"
+            android:title="@string/menu_logout" />
     </group>
 </menu>

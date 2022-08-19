@@ -1,5 +1,7 @@
 package com.example.hatti.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hatti.R;
+import com.example.hatti.activity.ProductDetailsActivity;
 import com.example.hatti.models.HorizontalProductScrollModel;
 
 import java.util.List;
 
 public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<HorizontalProductScrollAdapter.ViewHolder> {
     private List<HorizontalProductScrollModel> horizontalProductScrollModelsList;
-
+    Context context;
     public HorizontalProductScrollAdapter(List<HorizontalProductScrollModel> horizontalProductScrollModelsList) {
         this.horizontalProductScrollModelsList = horizontalProductScrollModelsList;
     }
@@ -33,6 +36,12 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
         holder.productTitle.setText(horizontalProductScrollModelsList.get(position).getProductTitle());
         holder.productPrice.setText(horizontalProductScrollModelsList.get(position).getProductPrice());
         holder.productImage.setImageResource(horizontalProductScrollModelsList.get(position).getProductImage());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ProductDetailsActivity.class));
+            }
+        });
 
     }
 

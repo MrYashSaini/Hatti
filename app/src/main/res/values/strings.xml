@@ -14,9 +14,15 @@
     <string name="menu_category">Category</string>
     <string name="menu_order">Order</string>
     <string name="menu_notification">Notification</string>
+    <string name="menu_about">about</string>
+    <string name="menu_myList">My List</string>
+    <string name="menu_payment_wallet">payment wallet</string>
+    <string name="menu_logout">Log out</string>
+    <string name="menu_contact">Contact</string>
+    <string name="menu_account">Account</string>
 
 
-    <string name="hatti_id">Hatti ID</string>
+    <string name="hatti_id">Hatti Id :</string>
     <string name="gmail">Gmail</string>
     <string name="password">Password</string>
     <string name="log_in">Log In</string>
@@ -28,10 +34,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add">Add</string>
-    <string name="price">Price</string>
+    <string name="price">Rs. 999</string>
     <string name="product_name">Product Name</string>
     <string name="product_image">product image</string>
     <string name="category_name">Category Name</string>
     <string name="see_all">See all</string>
     <string name="banner_image">banner image</string>
+    <string name="exit">Exit</string>
+    <string name="m_r_p">M.R.P</string>
+    <string name="delete_button">delete button</string>
 </resources>

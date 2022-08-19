@@ -76,13 +76,13 @@ public class HomeFragment extends Fragment {
         rvProductLayout = view.findViewById(R.id.rvHorizontalView);
         List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
         horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.banner,"parle g2","25"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.banner,"parle g3","26"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.banner,"parle g4","56"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.banner,"parle g5","6"));
+        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.item1,"parle g3","26"));
+        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.item2,"parle g4","56"));
+        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.item3,"parle g5","6"));
         horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.banner,"parle g6","5"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.banner,"parle g7","2"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.banner,"parle g8","216"));
-        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.banner,"parle g9","26"));
+        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.item2,"parle g7","2"));
+        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.item3,"parle g8","216"));
+        horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.item1,"parle g9","26"));
         horizontalProductScrollModelList.add(new HorizontalProductScrollModel(R.drawable.banner,"parle g10","256"));
 
         HorizontalProductScrollAdapter horizontalProductScrollAdapter = new HorizontalProductScrollAdapter(horizontalProductScrollModelList);
@@ -98,17 +98,17 @@ public class HomeFragment extends Fragment {
         sliderModelList = new ArrayList<>();
 
         sliderModelList.add(new SliderModel(R.drawable.banner));
-        sliderModelList.add(new SliderModel(R.drawable.logo));
+        sliderModelList.add(new SliderModel(R.drawable.item3));
         sliderModelList.add(new SliderModel(R.drawable.banner));
-        sliderModelList.add(new SliderModel(R.drawable.logo));
+        sliderModelList.add(new SliderModel(R.drawable.item4));
         sliderModelList.add(new SliderModel(R.drawable.banner));
-        sliderModelList.add(new SliderModel(R.drawable.logo));
+        sliderModelList.add(new SliderModel(R.drawable.item3));
         sliderModelList.add(new SliderModel(R.drawable.banner));
-        sliderModelList.add(new SliderModel(R.drawable.logo));
+        sliderModelList.add(new SliderModel(R.drawable.item4));
         sliderModelList.add(new SliderModel(R.drawable.banner));
-        sliderModelList.add(new SliderModel(R.drawable.logo));
+        sliderModelList.add(new SliderModel(R.drawable.item3));
         sliderModelList.add(new SliderModel(R.drawable.banner));
-        sliderModelList.add(new SliderModel(R.drawable.logo));
+        sliderModelList.add(new SliderModel(R.drawable.item4));
 
         SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList);
         bannerSliderViewPager.setAdapter(sliderAdapter);
