@@ -47,5 +47,15 @@
         android:name="com.example.hatti.activity.AboutActivity"
         android:label="@string/menu_about"
         tools:layout="@layout/activity_about"/>
+    <activity
+        android:id="@+id/nav_myList"
+        android:name="com.example.hatti.activity.MyListActivity"
+        android:label="@string/menu_myList"
+        tools:layout="@layout/activity_my_list"/>
+    <activity
+        android:id="@+id/nav_payment_wallet"
+        android:name="com.example.hatti.activity.PaymentWalletActivity"
+        android:label="@string/menu_payment_wallet"
+        tools:layout="@layout/activity_payment_wallet"/>
 
 </navigation>

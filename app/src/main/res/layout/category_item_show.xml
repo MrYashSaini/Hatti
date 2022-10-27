@@ -3,26 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/category_item_show_bg"
+    android:layout_height="170dp"
     android:layout_margin="5dp"
+    android:background="@drawable/category_item_show_bg"
     android:elevation="3dp"
     android:padding="10dp">
 
     <ImageView
-        android:id="@+id/ivItemImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:id="@+id/ivProductImageInCategory"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/banner" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvProductNameInCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="7dp"
         android:maxLines="1"
         android:text="@string/product_name"
@@ -30,48 +31,48 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivItemImage"
-        app:layout_constraintTop_toTopOf="@+id/ivItemImage" />
+        app:layout_constraintStart_toEndOf="@+id/ivProductImageInCategory"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvProductPriceInCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="4dp"
         android:text="@string/price"
+        android:textColor="@color/light_black"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductDescriptionInCategory" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnProductAddButtonInCategory"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
         android:backgroundTint="@color/foreground_color"
         android:drawableLeft="@drawable/ic_baseline_shopping_cart_24"
         android:drawableTint="@color/background_gray_color"
         android:text="@string/add"
         android:textColor="@color/background_gray_color"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/ivItemImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView4" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView16" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvProductDescriptionInCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:maxLines="2"
+        android:maxLines="1"
         android:text="product description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="@+id/tvProductNameInCategory"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductNameInCategory" />
 
     <TextView
         android:id="@+id/textView22"
@@ -79,13 +80,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="M.R.P"
-        android:textStyle="bold"
+        android:textColor="@color/light_black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvProductPriceInCategory"
+        app:layout_constraintStart_toEndOf="@+id/tvProductPriceInCategory" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/tvProductMrpInCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
@@ -94,13 +96,25 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView22"
         app:layout_constraintStart_toEndOf="@+id/textView22" />
 
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Rs."
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvProductDescriptionInCategory"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductDescriptionInCategory" />
+
     <View
-        android:id="@+id/view5"
+        android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="#9E9E9E"
-        app:layout_constraintBottom_toBottomOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="@+id/textView23"
-        app:layout_constraintStart_toStartOf="@+id/textView23"
-        app:layout_constraintTop_toTopOf="@+id/textView23" />
+        android:background="#989898"
+        app:layout_constraintBottom_toBottomOf="@+id/tvProductMrpInCategory"
+        app:layout_constraintEnd_toEndOf="@+id/tvProductMrpInCategory"
+        app:layout_constraintStart_toStartOf="@+id/tvProductMrpInCategory"
+        app:layout_constraintTop_toTopOf="@+id/tvProductMrpInCategory" />
 </androidx.constraintlayout.widget.ConstraintLayout>

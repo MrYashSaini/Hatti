@@ -8,8 +8,8 @@
     android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
-        android:id="@+id/ivItemImage"
-        android:layout_width="150dp"
+        android:id="@+id/ivListProductImage"
+        android:layout_width="130dp"
         android:layout_height="150dp"
         android:scaleType="center"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,10 +18,10 @@
         android:contentDescription="@string/product_image" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvListProductName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="7dp"
         android:maxLines="1"
         android:text="@string/product_name"
@@ -29,25 +29,27 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivItemImage"
-        app:layout_constraintTop_toTopOf="@+id/ivItemImage" />
+        app:layout_constraintStart_toEndOf="@+id/ivListProductImage"
+        app:layout_constraintTop_toTopOf="@+id/ivListProductImage" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvListProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="7dp"
         android:text="@string/price"
+        android:textColor="@color/light_black"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/tvListProductDescription" />
 
-    <Button
-        android:id="@+id/button2"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnListProductAdd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:backgroundTint="@color/foreground_color"
         android:drawableLeft="@drawable/ic_baseline_shopping_cart_24"
         android:drawableTint="@color/background_gray_color"
@@ -57,20 +59,20 @@
         android:textColor="@color/background_gray_color"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/ivItemImage"
-        app:layout_constraintStart_toStartOf="@+id/textView4" />
+        app:layout_constraintBottom_toBottomOf="@+id/ivListProductImage"
+        app:layout_constraintStart_toStartOf="@+id/textView3" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvListProductDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:maxLines="2"
-        android:text="product description"
+        android:text="@string/product_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="@+id/tvListProductName"
+        app:layout_constraintTop_toBottomOf="@+id/tvListProductName" />
 
     <TextView
         android:id="@+id/textView22"
@@ -78,13 +80,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="@string/m_r_p"
+        android:textColor="@color/light_black"
         android:textStyle="bold"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvListProductPrice"
+        app:layout_constraintStart_toEndOf="@+id/tvListProductPrice" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/tvListProductMrp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
@@ -98,20 +101,33 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#9E9E9E"
-        app:layout_constraintBottom_toBottomOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="@+id/textView23"
-        app:layout_constraintStart_toStartOf="@+id/textView23"
-        app:layout_constraintTop_toTopOf="@+id/textView23" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvListProductMrp"
+        app:layout_constraintEnd_toEndOf="@+id/tvListProductMrp"
+        app:layout_constraintStart_toStartOf="@+id/tvListProductMrp"
+        app:layout_constraintTop_toTopOf="@+id/tvListProductMrp" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/ivListProductRemove"
         android:layout_width="30dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnListProductAdd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/btnListProductAdd"
         app:srcCompat="@drawable/ic_baseline_delete"
         android:contentDescription="@string/delete_button" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/rupees"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="19sp"
+        android:gravity="top"
+        app:layout_constraintStart_toStartOf="@+id/tvListProductDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvListProductDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

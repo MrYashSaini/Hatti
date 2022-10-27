@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.hatti.R;
 import com.example.hatti.models.SliderModel;
 
@@ -25,7 +27,7 @@ public class SliderAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.slider_layout,container,false);
         ImageView banner = view.findViewById(R.id.ivBannerSlide);
-        banner.setImageResource(sliderModelList.get(position).getBanner());
+        Glide.with(container.getContext()).load(sliderModelList.get(position).getBanner()).apply(new RequestOptions().placeholder(R.drawable.ic_baseline_home_24)).into(banner);
         container.addView(view,0);
         return view;
     }

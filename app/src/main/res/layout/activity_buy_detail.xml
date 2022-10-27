@@ -4,40 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="50dp"
     tools:context=".activity.BuyDetailActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:backgroundTint="@color/background_gray_color"
+        android:foregroundTint="@color/white"
+        android:theme="@style/Theme.Hatti"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/Theme.Hatti.PopupOverlay">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/logo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="50dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 app:srcCompat="@drawable/van" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:paddingTop="20dp"
                 android:background="@drawable/category_item_show_bg"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="20dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView27"
+                        android:id="@+id/tvPriceListName"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -98,8 +130,8 @@
                         android:gravity="center"
                         android:text="Total"
                         android:textAlignment="center"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <include
@@ -114,12 +146,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="20dp"
-                android:textStyle="bold"
+                android:text="Cash On Delivery (COD)"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:text="Cash On Delivery" />
+                android:textStyle="bold" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBuyDetailBuy"
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
@@ -135,25 +168,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="OR"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:textStyle="bold"
-                android:textSize="16sp"/>
+                android:text="OR"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="200dp"
                 android:layout_height="60dp"
-                android:backgroundTint="@color/foreground_color"
-                android:textColor="@color/background_gray_color"
-                android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
-                android:textSize="18sp"
-                android:textAllCaps="false"
+                android:backgroundTint="@color/foreground_color"
                 android:drawableLeft="@drawable/ic_baseline_local_phone_24"
                 android:drawableTint="@color/background_gray_color"
-                android:text="Call For Buy" />
+                android:text="Call For Buy"
+                android:textAllCaps="false"
+                android:textColor="@color/background_gray_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

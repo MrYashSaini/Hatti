@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.hatti.account.ProfileSetupActivity;
 import com.example.hatti.databinding.ActivityMainBinding;
+import com.example.hatti.fragments.CartFragment;
+import com.example.hatti.fragments.CategoryItemsFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -62,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if(id==R.id.action_addtocart){
+            Toast.makeText(this, "this is cart button", Toast.LENGTH_SHORT).show();
+
+//            AppCompatActivity activity = (AppCompatActivity)v.getContext();
+            CartFragment fragment = new CartFragment();
+            this.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,fragment).addToBackStack(null).commit();
+
             return true;
         } else if (id==R.id.action_search) {
             return true;

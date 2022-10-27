@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_gray_color"
+    android:background="@color/black"
     tools:context=".account.ProfileSetupActivity">
 
     <ScrollView
@@ -26,21 +26,21 @@
                 android:layout_marginBottom="30dp"
                 android:src="@drawable/logo" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etNameForm"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                android:autofillHints="name"
                 android:background="@drawable/entrybox"
                 android:drawableStart="@drawable/ic_baseline_person_24"
-                android:inputType="textPersonName"
+                android:gravity="center|clip_vertical"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,23 +53,22 @@
                 android:text="Name"
                 android:textColor="@color/foreground_color" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etGmailForm"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="70dp"
                 android:layout_marginEnd="50dp"
-                android:autofillHints="emailAddress"
                 android:background="@drawable/entrybox"
                 android:drawableStart="@drawable/ic_baseline_mail_24"
-                android:inputType="textEmailAddress"
+                android:gravity="center|clip_vertical"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
                 android:textColor="@color/white"
-                tools:ignore="SpeakableTextPresentCheck" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -82,22 +81,22 @@
                 android:text="Gmail Id"
                 android:textColor="@color/foreground_color" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etPhoneForm"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="70dp"
                 android:layout_marginEnd="50dp"
-                android:autofillHints="phone"
                 android:background="@drawable/entrybox"
                 android:drawableStart="@drawable/ic_baseline_local_phone_24"
-                android:inputType="phone"
+                android:gravity="center|clip_vertical"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,7 +109,7 @@
                 android:text="Phone No."
                 android:textColor="@color/foreground_color" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etStateForm"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -119,12 +118,13 @@
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/entrybox"
                 android:drawableStart="@drawable/ic_baseline_location_city_24"
-                android:inputType="text"
+                android:gravity="center|clip_vertical"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -137,7 +137,7 @@
                 android:text="State"
                 android:textColor="@color/foreground_color" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etCityForm"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -146,12 +146,13 @@
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/entrybox"
                 android:drawableStart="@drawable/ic_baseline_location_city_24"
-                android:inputType="text"
+                android:gravity="center|clip_vertical"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -164,7 +165,7 @@
                 android:text="City"
                 android:textColor="@color/foreground_color" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etAddressForm"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -173,12 +174,13 @@
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/entrybox"
                 android:drawableStart="@drawable/ic_baseline_location_on_24"
-                android:inputType="text"
+                android:gravity="center|clip_vertical"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -191,7 +193,7 @@
                 android:text="Full Address"
                 android:textColor="@color/foreground_color" />
 
-            <EditText
+            <TextView
                 android:id="@+id/etDobForm"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -200,12 +202,13 @@
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/entrybox"
                 android:drawableStart="@drawable/ic_baseline_calendar_month_24"
-                android:inputType="date"
+                android:gravity="center|clip_vertical"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -218,45 +221,73 @@
                 android:text="DOB"
                 android:textColor="@color/foreground_color" />
 
-            <RadioGroup
+            <TextView
+                android:id="@+id/etGenderForm"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="70dp"
                 android:layout_marginEnd="50dp"
-                android:orientation="horizontal">
+                android:background="@drawable/entrybox"
+                android:drawableStart="@drawable/ic_baseline_person_24"
+                android:gravity="center|clip_vertical"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
-                <RadioButton
-                    android:id="@+id/rbMale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:buttonTint="@color/foreground_color"
-                    android:paddingStart="10dp"
-                    android:text="Male"
-                    android:textColor="@color/foreground_color"
-                    android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/name_bg"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="Gender"
+                android:textColor="@color/foreground_color" />
 
-                <RadioButton
-                    android:id="@+id/rbFemale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="70dp"
-                    android:buttonTint="@color/foreground_color"
-                    android:paddingStart="10dp"
-                    android:text="Female"
-                    android:textColor="@color/foreground_color"
-                    android:textSize="16sp" />
-            </RadioGroup>
+<!--            <RadioGroup-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="50dp"-->
+<!--                android:layout_marginTop="70dp"-->
+<!--                android:layout_marginEnd="50dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/rbMale"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="30dp"-->
+<!--                    android:buttonTint="@color/foreground_color"-->
+<!--                    android:paddingStart="10dp"-->
+<!--                    android:text="Male"-->
+<!--                    android:textColor="@color/foreground_color"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <RadioButton-->
+<!--                    android:id="@+id/rbFemale"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="70dp"-->
+<!--                    android:buttonTint="@color/foreground_color"-->
+<!--                    android:paddingStart="10dp"-->
+<!--                    android:text="Female"-->
+<!--                    android:textColor="@color/foreground_color"-->
+<!--                    android:textSize="16sp" />-->
+<!--            </RadioGroup>-->
 
             <Button
-                android:id="@+id/btnNext"
+                android:id="@+id/btnUpdateProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="100dp"
                 android:backgroundTint="@color/foreground_color"
-                android:text="Next"
+                android:text="Call For update"
                 android:textColor="@color/background_gray_color" />
 
         </LinearLayout>

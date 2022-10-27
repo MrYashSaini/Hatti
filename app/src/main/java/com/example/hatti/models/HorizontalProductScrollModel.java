@@ -1,36 +1,57 @@
 package com.example.hatti.models;
 
 public class HorizontalProductScrollModel {
-    private int productImage;
-    private String productTitle,productPrice;
+    private String image;
+    private String name,price,category,productId;
 
-    public HorizontalProductScrollModel(int productImage, String productTitle, String productPrice) {
-        this.productImage = productImage;
-        this.productTitle = productTitle;
-        this.productPrice = productPrice;
+    public HorizontalProductScrollModel(String image, String name, String price, String category, String productId) {
+        this.image = image;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.productId = productId;
     }
 
-    public int getProductImage() {
-        return productImage;
+    public HorizontalProductScrollModel() {
     }
 
-    public void setProductImage(int productImage) {
-        this.productImage = productImage;
+    public String getCategory() {
+        return category;
     }
 
-    public String getProductTitle() {
-        return productTitle;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public void setProductTitle(String productTitle) {
-        this.productTitle = productTitle;
+    public String getProductId() {
+        return productId;
     }
 
-    public String getProductPrice() {
-        return productPrice;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice;
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

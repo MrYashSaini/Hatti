@@ -26,12 +26,14 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_baseline_visibility_off_24.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/name_bg.xml" value="0.23" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/order_payment_sample.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/product_details_bg.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/ractange_bg.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/search_bar_bg.xml" value="0.2545" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/selected_dot.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/side_nav_bar.xml" value="0.23" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/slider_background.xml" value="0.23" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/slider_background.xml" value="0.264" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/drawable/white_bg.xml" value="0.23" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_about.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_buy_conform.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_buy_detail.xml" value="0.25" />
@@ -40,6 +42,8 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_login.xml" value="0.2359375" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_my_list.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_order_detail.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_payment_wallet.xml" value="0.2359375" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_product_details.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_profile_setup.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/activity_splash.xml" value="0.25" />
@@ -49,7 +53,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/cart_total_payment_items_sample.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/cart_total_paytment_detail.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/category_all_items_sample.xml" value="0.25" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/category_item.xml" value="0.6" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/category_item.xml" value="0.4" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/category_item_show.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/category_name_sample.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/content_main.xml" value="0.25" />
@@ -57,12 +61,15 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_category.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_category_items.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_notification.xml" value="0.13802083333333334" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_order.xml" value="0.2212962962962963" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_notification.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/fragment_order.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/horizontal_scroll_item_layout.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/horizontal_scroll_layout.xml" value="0.39922854387656703" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/my_list_sample.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/nav_header_main.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/notification_sample.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/order_payment_sample.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/order_sample.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/product_image_layout.xml" value="0.1875" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/layout/slider_layout.xml" value="0.1875" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Hatti/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />

@@ -1,11 +1,11 @@
 package com.example.hatti.models;
 
 public class ProfileModel {
-    String name,gmail,phone,state,dob,city,address,gender;
+    String name,gmail,phone,state,dob,city,address,gender,profile_photo,shop_photo;
 
     public ProfileModel() {}
 
-    public ProfileModel(String name, String gmail, String phone, String state, String dob, String city, String address, String gender) {
+    public ProfileModel(String name, String gmail, String phone, String state, String dob, String city, String address, String gender,String profile_photo,String shop_photo) {
         this.name = name;
         this.gmail = gmail;
         this.phone = phone;
@@ -13,7 +13,24 @@ public class ProfileModel {
         this.dob = dob;
         this.city = city;
         this.address = address;
-        this.gender = gender;
+        this.profile_photo = profile_photo;
+        this.shop_photo = shop_photo;
+    }
+
+    public String getProfile_photo() {
+        return profile_photo;
+    }
+
+    public void setProfile_photo(String profile_photo) {
+        this.profile_photo = profile_photo;
+    }
+
+    public String getShop_photo() {
+        return shop_photo;
+    }
+
+    public void setShop_photo(String shop_photo) {
+        this.shop_photo = shop_photo;
     }
 
     public String getName() {

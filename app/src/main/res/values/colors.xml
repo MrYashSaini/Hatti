@@ -2,11 +2,14 @@
 <resources>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF333333</color>
+    <color name="purple_700">#FF000000</color> // FF333333 toolbar
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background_gray_color">#FF333333</color>
-    <color name="foreground_color">#FF7FC37E</color>
+    <color name="light_black">#FF000000</color> // FF222222
+    <color name="background_gray_color">#FF000000</color> //FF333333
+    <color name="foreground_color">#FF08E2FE</color> //#6BBEB6  FF7FC37E //D5D5D5 for home
+    <color name= "green_color">#02998A</color>
+    <color name="dark_green">#FF7FC37E</color>
 </resources>

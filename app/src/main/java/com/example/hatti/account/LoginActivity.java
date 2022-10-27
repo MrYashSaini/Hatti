@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hatti.MainActivity;
 import com.example.hatti.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -81,9 +82,10 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
-                                        Intent intent = new Intent(LoginActivity.this,ProfileSetupActivity.class);
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                         intent.putExtra("activity","Next");
                                         startActivity(intent);
+                                        finish();
                                     }
                                     else {
                                         Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -103,7 +105,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         if(auth.getCurrentUser()!=null){
-            startActivity(new Intent(LoginActivity.this,ProfileSetupActivity.class));
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            finish();
 
         }
 
