@@ -2,9 +2,11 @@ package com.example.hatti.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,18 +41,25 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.noOfProduct.setText("("+model.getNoOfProduct()+")");
         holder.status.setText(model.getStatus());
         holder.Amount.setText(model.getPrice());
+
         holder.DateTime.setText(model.getDate()+"   "+model.getTime());
-        holder.viewDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, OrderDetailActivity.class);
-                intent.putExtra("time",model.getTime());
-                intent.putExtra("date",model.getDate());
-                context.startActivity(intent);
-
-
-            }
+        holder.viewDetail.setOnClickListener(v -> {
+            Intent intent = new Intent(context, OrderDetailActivity.class);
+            intent.putExtra("price",model.getPrice());
+            intent.putExtra("orderId",model.getOrderId()+"");
+            context.startActivity(intent);
         });
+        switch (model.getStatus()) {
+            case "Cancel Order":
+                holder.status.setTextColor(Color.parseColor("#ff0000"));
+                break;
+            case "Order In Root":
+                holder.status.setTextColor(Color.parseColor("#0000ff"));
+                break;
+            case "Order Delever":
+                holder.status.setTextColor(Color.parseColor("#689F38"));
+                break;
+        }
     }
 
     @Override
@@ -70,4 +79,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             viewDetail = itemView.findViewById(R.id.btnOrderViewDetail);
         }
     }
+
+
 }

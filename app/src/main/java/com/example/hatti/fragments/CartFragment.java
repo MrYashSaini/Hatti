@@ -1,10 +1,15 @@
 package com.example.hatti.fragments;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,29 +18,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hatti.R;
-import com.example.hatti.activity.BuyConformActivity;
 import com.example.hatti.activity.BuyDetailActivity;
 import com.example.hatti.adapter.CartAdapter;
-import com.example.hatti.adapter.CategoryProductAdapter;
-import com.example.hatti.adapter.HorizontalProductScrollAdapter;
 import com.example.hatti.adapter.ProductPriceListAdapter;
 import com.example.hatti.models.CartModel;
-import com.example.hatti.models.HorizontalProductScrollModel;
 import com.example.hatti.models.ProductListPriceModel;
 import com.example.hatti.models.categoryProductModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class CartFragment extends Fragment {
     FirebaseAuth auth;
@@ -43,12 +45,11 @@ public class CartFragment extends Fragment {
     RecyclerView rvProductShow,rvProductPrice;
     ArrayList<categoryProductModel> productList = new ArrayList<>();
     ArrayList<ProductListPriceModel> productPriceList = new ArrayList<>();
-    TextView buy,removeAll,tvTotalPrice,tvTotalMrp,tvTotalDiscount;
+    TextView call,buy,removeAll,tvTotalPrice,tvTotalMrp,tvTotalDiscount,selectProduct;
     int totalAmount= 0,totalMrp=0,totalDiscount=0;
-    // recommended
-    private TextView horizontalLayoutTitle;
-    private Button btnViewAll;
-    private RecyclerView rvProductLayout;
+    ProgressBar progressBar;
+    LinearLayout linearLayout,backgroundLayout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,43 +63,58 @@ public class CartFragment extends Fragment {
         tvTotalPrice   = view.findViewById(R.id.tvProductPriceTotalAmount);
         tvTotalMrp     = view.findViewById(R.id.tvProductPriceTotalMrp);
         tvTotalDiscount= view.findViewById(R.id.tvProductPriceTotalDiscount);
-// for product Recycler View
+        call           = view.findViewById(R.id.tvCartCall);
+        progressBar = view.findViewById(R.id.pbCartProgressBar);
+        selectProduct = view.findViewById(R.id.tvCartSelectProduct);
+        linearLayout = view.findViewById(R.id.llCartFragmentLayout);
+        backgroundLayout = view.findViewById(R.id.llCartBackgroundLayout);
+//      show product in Recycler View
         CartAdapter adapter = new CartAdapter(productList,getContext());
         rvProductShow.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvProductShow.setLayoutManager(linearLayoutManager);
-// Recycler View for product price list
-        ProductPriceListAdapter adapter1 = new ProductPriceListAdapter(productPriceList,getContext());
-        rvProductPrice.setAdapter(adapter1);
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
-        rvProductPrice.setLayoutManager(linearLayoutManager1);
 
-        buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//      buy product
+        buy.setOnClickListener(v -> {
+            if (productList.size()!=0){
                 Intent intent = new Intent(getContext(),BuyDetailActivity.class);
-//                intent.putExtra("list",productList);
                 intent.putExtra("Amount",98);
                 intent.putExtra("discount",totalDiscount);
                 intent.putExtra("mrp",totalMrp);
                 startActivity(intent);
             }
+            else {
+                Toast.makeText(getContext(), "select product", Toast.LENGTH_SHORT).show();
+            }
+            
         });
+//      show all product list with price
+        ProductPriceListAdapter adapter1 = new ProductPriceListAdapter(productPriceList,getContext());
+        rvProductPrice.setAdapter(adapter1);
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
+        rvProductPrice.setLayoutManager(linearLayoutManager1);
 
-        database.getReference().child("Users").child(auth.getUid()).child("Cart").child("list")
+        database.getReference().child("Users").child(Objects.requireNonNull(auth.getUid())).child("Cart").child("list")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         productList.clear();
+                        if (snapshot.getChildrenCount()!=0){
+                            progressBar.setVisibility(View.VISIBLE);
+                        }else {
+                            backgroundLayout.setVisibility(View.VISIBLE);
+                            removeAll.setVisibility(View.GONE);
+                        }
                         for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                             CartModel products = dataSnapshot.getValue(CartModel.class);
-                            database.getReference().child("categorys").child("product category").child(products.getCategory()).child(products.getProductId())
+
+                            database.getReference().child("categorys").child("product category").child(Objects.requireNonNull(products).getCategory()).child(products.getProductId())
                                     .addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot){
                                             categoryProductModel productDetails = snapshot.getValue(categoryProductModel.class);
                                             categoryProductModel full = new categoryProductModel();
-                                            full.setImage(productDetails.getImage());
+                                            full.setImage(Objects.requireNonNull(productDetails).getImage());
                                             full.setName(productDetails.getName());
                                             full.setPrice(productDetails.getPrice());
                                             full.setMrp(productDetails.getMrp());
@@ -114,19 +130,13 @@ public class CartFragment extends Fragment {
                                             itemList.setMrp(productDetails.getMrp());
                                             itemList.setQty(products.getQty()+"");
 
-
-                                            Integer amount = Integer.valueOf(itemList.getPrice());
-                                            int price = amount.intValue();
+                                            int price = Integer.parseInt(itemList.getPrice());
                                             int total = (price * products.getQty());
                                             totalAmount +=total;
                                             itemList.setTotalPrice(total+"");
                                             productPriceList.add(itemList);
-//                                            Integer amount = Integer.valueOf(full.getPrice());
-//                                            int price = amount.intValue();
-//                                            totalAmount += (price * products.getQty());
 
-                                            Integer mrpAmount = Integer.valueOf(full.getMrp());
-                                            int mrp = mrpAmount.intValue();
+                                            int mrp = Integer.parseInt(full.getMrp());
                                             totalMrp = totalMrp+(mrp*products.getQty());
 
                                             totalDiscount = totalDiscount+((mrp*products.getQty())-(price*products.getQty()));
@@ -135,73 +145,65 @@ public class CartFragment extends Fragment {
                                             tvTotalMrp.setText(totalMrp+"");
                                             adapter.notifyDataSetChanged();
                                             adapter1.notifyDataSetChanged();
+                                            linearLayout.setVisibility(View.VISIBLE);
+                                            progressBar.setVisibility(View.GONE);
                                         }
 
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError error) {
-                                            Toast.makeText(getContext(), "not get data from product category", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_LONG).show();
                                         }
                                     });
                         }
-                        adapter.notifyDataSetChanged();
-
-
-
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(getContext(), "not get data from cart", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-        removeAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                database.getReference().child("Users").child(auth.getUid()).child("Cart").removeValue();
-                productList.clear();
-                adapter.notifyDataSetChanged();
-            }
+//       remove all product from cart
+        removeAll.setOnClickListener(v -> {
+            database.getReference().child("Users").child(auth.getUid()).child("Cart").removeValue();
+            productList.clear();
+            adapter.notifyDataSetChanged();
+            adapter1.notifyDataSetChanged();
+            removeAll.setVisibility(View.GONE);
         });
+//        call for buy product
+        call.setOnClickListener(v -> database.getReference().child("Hatti").child("contact detail").child("phoneNo").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.call_dialog_box);
+                dialog.show();
+                Button button = dialog.findViewById(R.id.btnCallDialogBoxButton);
+                TextView msg = dialog.findViewById(R.id.tvCallDialogBoxMsg);
+                msg.setText("Order Place by call");
+                button.setOnClickListener(v1 -> {
+                    dialog.dismiss();
+                    String phoneNumber=snapshot.getValue(String.class);
+                    {
 
-//        Toast.makeText(getContext(), "list size"+productList.size(), Toast.LENGTH_SHORT).show();
-//        horizontalLayoutTitle = view.findViewById(R.id.horizontalScrollViewTitle);
-//        horizontalLayoutTitle.setText(R.string.recommended);
-//        btnViewAll = view.findViewById(R.id.btnHorizontalScrollViewButton);
-//        btnViewAll.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth auth = FirebaseAuth.getInstance();
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                DatabaseReference myRef = database.getReference();
-//                myRef.child("Users").child(auth.getUid()).child("CategoryShow").child("category").setValue("recommended");
-//                AppCompatActivity activity = (AppCompatActivity)v.getContext();
-//                CategoryItemsFragment fragment = new CategoryItemsFragment();
-//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,fragment).addToBackStack(null).commit();
-//            }
-//        });
-//        rvProductLayout = view.findViewById(R.id.rvHorizontalView);
-//        List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
-//
-//        HorizontalProductScrollAdapter horizontalProductScrollAdapter = new HorizontalProductScrollAdapter(horizontalProductScrollModelList);
-//        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext());
-//        linearLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        rvProductLayout.setLayoutManager(linearLayoutManager2);
-//        rvProductLayout.setAdapter(horizontalProductScrollAdapter);
-//        database.getReference().child("categorys").child("product category").child("f11").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                horizontalProductScrollModelList.clear();
-//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                    HorizontalProductScrollModel products = dataSnapshot.getValue(HorizontalProductScrollModel.class);
-//                    horizontalProductScrollModelList.add(products);
-//                }
-//                horizontalProductScrollAdapter.notifyDataSetChanged();
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+                        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+                            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.CALL_PHONE}, 101);
+
+                            return;
+                        }
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:" + Objects.requireNonNull(phoneNumber).trim()));
+                        startActivity(callIntent);
+                    }
+                });
+
+
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }));
 
         return view;
     }

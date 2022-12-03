@@ -45,7 +45,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView dateTime,noOfProduct,amount,pay,due;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

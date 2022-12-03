@@ -12,6 +12,7 @@
         android:orderInCategory="100"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="addToCart"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        android:actionLayout="@layout/action_bar_cart_notification"/>
 
 </menu>

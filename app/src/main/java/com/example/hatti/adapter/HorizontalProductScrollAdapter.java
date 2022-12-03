@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -29,8 +30,10 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
     Context context;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
-    public HorizontalProductScrollAdapter(List<HorizontalProductScrollModel> horizontalProductScrollModelsList) {
+
+    public HorizontalProductScrollAdapter(List<HorizontalProductScrollModel> horizontalProductScrollModelsList, Context context) {
         this.horizontalProductScrollModelsList = horizontalProductScrollModelsList;
+        this.context = context;
     }
 
     @NonNull
@@ -42,41 +45,42 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.productTitle.setText(horizontalProductScrollModelsList.get(position).getName());
-        holder.productPrice.setText(horizontalProductScrollModelsList.get(position).getPrice());
-        if(horizontalProductScrollModelsList.get(position).getImage().equals("default")){
-            holder.productImage.setImageResource(R.drawable.ic_baseline_home_24);
-        }
-        else {
-            Picasso.get().load(horizontalProductScrollModelsList.get(position).getImage()).placeholder(R.drawable.ic_baseline_home_24).into(holder.productImage);
+        try{
+            holder.productTitle.setText(horizontalProductScrollModelsList.get(position).getName());
+            holder.productPrice.setText(horizontalProductScrollModelsList.get(position).getPrice());
+            Picasso.get().load(horizontalProductScrollModelsList.get(position).getImage()).placeholder(R.drawable.placeholder).into(holder.productImage);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(),ProductDetailsActivity.class);
+                    intent.putExtra("category",horizontalProductScrollModelsList.get(position).getCategory());
+                    intent.putExtra("id",horizontalProductScrollModelsList.get(position).getProductId());
+
+                    v.getContext().startActivity(intent);
+                }
+            });
+            holder.addButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String storeCategory = horizontalProductScrollModelsList.get(position).getCategory();
+                    String storeId = horizontalProductScrollModelsList.get(position).getProductId();
+                    int qty = 1;
+                    CartModel cartModel = new CartModel(storeCategory,storeId,qty);
+                    database.getReference().child("Users").child(auth.getUid()).child("Cart").child("list").child(storeCategory+storeId)
+                            .setValue(cartModel)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task){
+                                    Toast.makeText(context, "Add To Cart", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            });
+        }catch (Exception ignored){
+
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),ProductDetailsActivity.class);
-                intent.putExtra("category",horizontalProductScrollModelsList.get(position).getCategory());
-                intent.putExtra("id",horizontalProductScrollModelsList.get(position).getProductId());
-
-                v.getContext().startActivity(intent);
-            }
-        });
-        holder.addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String storeCategory = horizontalProductScrollModelsList.get(position).getCategory();
-                String storeId = horizontalProductScrollModelsList.get(position).getProductId();
-                int qty = 1;
-                CartModel cartModel = new CartModel(storeCategory,storeId,qty);
-                database.getReference().child("Users").child(auth.getUid()).child("Cart").child("list").child(storeCategory+storeId)
-                        .setValue(cartModel)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task){
-                            }
-                        });
-            }
-        });
     }
 
     @Override
@@ -84,7 +88,7 @@ public class HorizontalProductScrollAdapter extends RecyclerView.Adapter<Horizon
         return horizontalProductScrollModelsList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView productImage;
         TextView productTitle,productPrice;
         AppCompatButton addButton,seeAll;

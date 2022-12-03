@@ -1,6 +1,8 @@
 package com.example.hatti.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.hatti.R;
+import com.example.hatti.activity.NotificationDetailActivity;
 import com.example.hatti.models.NotificationModel;
 
 import java.util.ArrayList;
@@ -39,7 +42,32 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.title.setText(model.getTitle());
         holder.description.setText(model.getDescription());
         holder.date.setText(model.getDate()+"  "+model.getTime());
-        Glide.with(context).load(list.get(position).getImage()).apply(new RequestOptions().placeholder(R.drawable.ic_baseline_home_24)).into(holder.image);
+        Glide.with(context).load(list.get(position).getImage()).apply(new RequestOptions().placeholder(R.drawable.placeholder)).into(holder.image);
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, NotificationDetailActivity.class);
+            intent.putExtra("date",model.getDate());
+            intent.putExtra("time",model.getTime());
+            intent.putExtra("title",model.getTitle());
+            intent.putExtra("message",model.getDescription());
+            intent.putExtra("image",model.getImage());
+            intent.putExtra("type",model.getType());
+            intent.putExtra("category",model.getCategory());
+            intent.putExtra("id",model.getId()+"");
+            intent.putExtra("notificationId",model.getNotificationId()+"");
+            context.startActivity(intent);
+        });
+        try{
+            if (model.isSeen()){
+                holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+            }
+            else {
+                holder.itemView.setBackgroundColor(Color.parseColor("#FFE3F3FF"));
+            }
+
+        }
+        catch (Exception ignored){
+
+        }
 
     }
 
@@ -48,7 +76,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView title,description,date;
         ImageView image;
         public ViewHolder(@NonNull View itemView) {

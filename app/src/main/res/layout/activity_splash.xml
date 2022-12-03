@@ -6,12 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".account.SplashActivity"
     android:orientation="vertical"
-    android:background="@color/background_gray_color">
+    android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="250dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivProfileSetupProfileImg"
+        android:layout_width="245dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/logo" />
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/white"
+        android:src="@drawable/round_logo"
+        />
+
 </LinearLayout>

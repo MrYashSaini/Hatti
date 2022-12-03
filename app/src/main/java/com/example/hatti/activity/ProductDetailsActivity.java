@@ -2,12 +2,18 @@ package com.example.hatti.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,9 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hatti.R;
+import com.example.hatti.account.ProfileSetupActivity;
 import com.example.hatti.adapter.HorizontalProductScrollAdapter;
 import com.example.hatti.adapter.ProductImageAdapter;
-import com.example.hatti.fragments.CategoryItemsFragment;
+import com.example.hatti.internet.NetworkBroadcast;
 import com.example.hatti.models.CartModel;
 import com.example.hatti.models.HorizontalProductScrollModel;
 import com.example.hatti.models.categoryProductModel;
@@ -35,37 +42,36 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ProductDetailsActivity extends AppCompatActivity {
     private ViewPager vpProductImage;
-    private TabLayout tlProductIndicator;
     ImageView ivAddOnMyList;
-    TextView tvAddOnCart,name,price,stock,description,mrp,quantity,si,weight,brand,manufacture,ingredient;
+    private TextView tvAddOnCart,name,price,stock,description,mrp,quantity,si,weight,brand,manufacture,ingredient;
     String storeCategory,storeId;
     FirebaseAuth auth;
     FirebaseDatabase database;
     List<String> productImagesList=new ArrayList<>();
-    private TextView horizontalLayoutTitle;
-    private Button btnViewAll;
-    private RecyclerView rvProductLayout;
     ImageButton increase,decrease;
     EditText noOfProduct;
     boolean qtyOk = false;
     int minQty = 1;
     int maxQty = 500;
+    Toolbar toolbar;
+    private BroadcastReceiver broadcastReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
-
+        toolbar = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
         Intent intent = getIntent();
         storeCategory = intent.getStringExtra("category");
         storeId = intent.getStringExtra("id");
-
-
         // initialize
         vpProductImage = findViewById(R.id.vpProductImages);
-        tlProductIndicator = findViewById(R.id.tlProductIndicator);
+        TabLayout tlProductIndicator = findViewById(R.id.tlProductIndicator);
         ivAddOnMyList = findViewById(R.id.ivAddToMyList);
         tvAddOnCart= findViewById(R.id.tvAddToCart);
         database = FirebaseDatabase.getInstance();
@@ -86,6 +92,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
         manufacture = findViewById(R.id.tvProductManufacturerInDetail);
         ingredient = findViewById(R.id.tvProductIngredientInDetail);
 
+        String authId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+
+//        check internet
+        broadcastReceiver = new NetworkBroadcast();
+        registerReceiver(broadcastReceiver,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+        toolbar.setBackgroundColor(getResources().getColor(R.color.white));
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_baseline_arrow_back));
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
         ProductImageAdapter adapter = new ProductImageAdapter(productImagesList);
         vpProductImage.setAdapter(adapter);
         // connect tab layout to view pager
@@ -96,7 +111,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         categoryProductModel model = snapshot.getValue(categoryProductModel.class);
-                        name.setText(model.getName().toUpperCase(Locale.ROOT));
+                        name.setText(Objects.requireNonNull(model).getName().toUpperCase(Locale.ROOT));
                         price.setText(model.getPrice());
                         mrp.setText(model.getMrp());
                         description.setText(model.getDescription());
@@ -120,133 +135,87 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     }
                 });
         // Add On Cart
-        tvAddOnCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int productQty = qtyFun();
-                if(qtyOk){
-                    CartModel cartModel = new CartModel(storeCategory,storeId,productQty);
-                    database.getReference().child("Users").child(auth.getUid()).child("Cart").child("list").child(storeCategory+storeId)
-                            .setValue(cartModel)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(ProductDetailsActivity.this, "Add On Cart", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
+        tvAddOnCart.setOnClickListener(v -> {
+            int productQty = qtyFun();
+            if(qtyOk){
+                CartModel cartModel = new CartModel(storeCategory,storeId,productQty);
+                database.getReference().child("Users").child(authId).child("Cart").child("list").child(storeCategory+storeId)
+                        .setValue(cartModel)
+                        .addOnCompleteListener(task -> Toast.makeText(ProductDetailsActivity.this, "Add On Cart", Toast.LENGTH_SHORT).show());
             }
         });
         // Add On MyList
-        ivAddOnMyList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CartModel cartModel = new CartModel(storeCategory,storeId,1);
-                database.getReference().child("Users").child(auth.getUid()).child("My List").child("list").child(storeCategory+storeId)
-                        .setValue(cartModel)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(ProductDetailsActivity.this, "Add On List", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
+        ivAddOnMyList.setOnClickListener(v -> {
+            CartModel cartModel = new CartModel(storeCategory,storeId,1);
+            database.getReference().child("Users").child(authId).child("My List").child("list").child(storeCategory+storeId)
+                    .setValue(cartModel)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(ProductDetailsActivity.this, "Add On List", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
 
-        increase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int Qty = qtyFun();
-                if(Qty<maxQty){
-                    noOfProduct.setText((Qty+1)+"");
-                }
-                else{
-                    noOfProduct.setText("500");
-                }
+        increase.setOnClickListener(v -> {
+            int Qty = qtyFun();
+            if(Qty<maxQty){
+                noOfProduct.setText((Qty+1)+"");
+            }
+            else{
+                noOfProduct.setText("500");
             }
         });
-        decrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int Qty = qtyFun();
-                if(Qty>minQty){
-                    noOfProduct.setText((Qty-1)+"");
-                }
-                else{
-                    noOfProduct.setText("1");
-                }
+        decrease.setOnClickListener(v -> {
+            int Qty = qtyFun();
+            if(Qty>minQty){
+                noOfProduct.setText((Qty-1)+"");
+            }
+            else{
+                noOfProduct.setText("1");
             }
         });
 
         // horizontal product view
-        horizontalLayoutTitle = findViewById(R.id.horizontalScrollViewTitle);
-        horizontalLayoutTitle.setText(R.string.recommended);
-        btnViewAll = findViewById(R.id.btnHorizontalScrollViewButton);
-        btnViewAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppCompatActivity activity = (AppCompatActivity)v.getContext();
-                CategoryItemsFragment fragment = new CategoryItemsFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,fragment).addToBackStack(null).commit();
-            }
-        });
-        rvProductLayout = findViewById(R.id.rvHorizontalView);
+        TextView horizontalLayoutTitle = findViewById(R.id.horizontalScrollViewTitle);
+        horizontalLayoutTitle.setText("More Product");
+        Button btnViewAll = findViewById(R.id.btnHorizontalScrollViewButton);
+        btnViewAll.setVisibility(View.GONE);
+
+        RecyclerView rvProductLayout = findViewById(R.id.rvHorizontalView);
         List<HorizontalProductScrollModel> horizontalProductScrollModelList = new ArrayList<>();
 
-        HorizontalProductScrollAdapter horizontalProductScrollAdapter = new HorizontalProductScrollAdapter(horizontalProductScrollModelList);
+        HorizontalProductScrollAdapter horizontalProductScrollAdapter = new HorizontalProductScrollAdapter(horizontalProductScrollModelList,ProductDetailsActivity.this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ProductDetailsActivity.this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvProductLayout.setLayoutManager(linearLayoutManager);
         rvProductLayout.setAdapter(horizontalProductScrollAdapter);
-        database.getReference().child("categorys").child("product category").child(storeCategory).addValueEventListener(new ValueEventListener() {
+        database.getReference().child("Hatti").child("recommended products").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 horizontalProductScrollModelList.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    HorizontalProductScrollModel products = dataSnapshot.getValue(HorizontalProductScrollModel.class);
-                    horizontalProductScrollModelList.add(products);
+                    CartModel product = dataSnapshot.getValue(CartModel.class);
+                    database.getReference().child("categorys").child("product category").child(product.getCategory()).child(product.getProductId())
+                            .addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    HorizontalProductScrollModel productDetail = snapshot.getValue(HorizontalProductScrollModel.class);
+                                    horizontalProductScrollModelList.add(productDetail);
+                                    horizontalProductScrollAdapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Toast.makeText(ProductDetailsActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
                 }
-                horizontalProductScrollAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-//--------------------------------------------
-//2 horizontal scroll view
-        TextView horizontalLayoutTitle2 = findViewById(R.id.horizontalScrollViewTitle2);
-        horizontalLayoutTitle2.setText("Top Products");
-        Button btnViewAll2 = findViewById(R.id.btnHorizontalScrollViewButton2);
-        btnViewAll2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppCompatActivity activity = (AppCompatActivity)v.getContext();
-                CategoryItemsFragment fragment = new CategoryItemsFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,fragment).addToBackStack(null).commit();
-            }
-        });
-        RecyclerView rvSecondHV = findViewById(R.id.rvHorizontalView2);
-        List<HorizontalProductScrollModel> horizontalProductScrollModelList2 = new ArrayList<>();
-
-        HorizontalProductScrollAdapter horizontalProductScrollAdapter2 = new HorizontalProductScrollAdapter(horizontalProductScrollModelList);
-        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(ProductDetailsActivity.this);
-        linearLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rvSecondHV.setLayoutManager(linearLayoutManager2);
-        rvSecondHV.setAdapter(horizontalProductScrollAdapter2);
-        database.getReference().child("categorys").child("product category").child(storeCategory).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                horizontalProductScrollModelList2.clear();
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    HorizontalProductScrollModel products = dataSnapshot.getValue(HorizontalProductScrollModel.class);
-                    horizontalProductScrollModelList2.add(products);
-                }
-                horizontalProductScrollAdapter2.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(ProductDetailsActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -271,5 +240,37 @@ public class ProductDetailsActivity extends AppCompatActivity {
             qtyOk = true;
         }
         return productQty;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_option, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id==R.id.tolProfile){
+            Intent intent = new Intent(ProductDetailsActivity.this, ProfileSetupActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id==R.id.tolContact) {
+            Intent intent = new Intent(ProductDetailsActivity.this, ContactActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id==R.id.tolAbout) {
+            Intent intent = new Intent(ProductDetailsActivity.this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadcastReceiver);
     }
 }

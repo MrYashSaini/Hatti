@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.text.util.Linkify;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +29,8 @@ public class CreateAccountActivity extends AppCompatActivity {
     TextView gmail,facebook,instagram,phoneNumber;
     Button back,phone;
     FirebaseDatabase database;
-
+    ProgressBar progressBar;
+    LinearLayout linearLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,16 +41,18 @@ public class CreateAccountActivity extends AppCompatActivity {
         instagram = findViewById(R.id.tvInstagramLink);
         phone = findViewById(R.id.btnPhoneCall);
         phoneNumber = findViewById(R.id.tvPhoneNo);
+        progressBar = findViewById(R.id.pbCreateAccountProgressBar);
+        linearLayout = findViewById(R.id.llCreateAccountActivityLayout);
         database = FirebaseDatabase.getInstance();
 
-        database.getReference().child("hatti").child("about").addValueEventListener(new ValueEventListener() {
+        database.getReference().child("Hatti").child("contact detail").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 AboutModel aboutModel = snapshot.getValue(AboutModel.class);
                 facebook.setText(aboutModel.getFacebook());
                 instagram.setText(aboutModel.getInstagram());
                 gmail.setText(aboutModel.getGmail());
-                phoneNumber.setText(aboutModel.getPhone());
+                phoneNumber.setText(aboutModel.getPhoneNo());
             }
 
             @Override
@@ -62,7 +67,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT > 22) {
 
-                    if (ActivityCompat.checkSelfPermission(CreateAccountActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(CreateAccountActivity.this,Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 
                         ActivityCompat.requestPermissions(CreateAccountActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 101);
 
@@ -88,6 +93,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                 email.putExtra(Intent.EXTRA_SUBJECT, "Subject");
                 email.putExtra(Intent.EXTRA_TEXT, "My Email message");
                 startActivity(email);
+                linearLayout.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         });
 

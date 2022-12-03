@@ -3,23 +3,30 @@ package com.example.hatti.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hatti.MainActivity;
 import com.example.hatti.R;
 
+import com.example.hatti.internet.NetworkBroadcast;
+import com.example.hatti.models.AllOrderModel;
 import com.example.hatti.models.CartModel;
 import com.example.hatti.models.OrderModel;
 import com.example.hatti.models.PaymentModel;
+import com.example.hatti.models.ProfileModel;
 import com.example.hatti.models.categoryProductModel;
 import com.example.hatti.models.productListModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,87 +37,132 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class BuyConformActivity extends AppCompatActivity {
-    TextView price;
-    AppCompatButton exit;
-    FirebaseAuth auth;
-    FirebaseDatabase database;
-    ArrayList<categoryProductModel> productList = new ArrayList<>();
+    private FirebaseDatabase database;
+    private ArrayList<categoryProductModel> productList = new ArrayList<>();
+    private int clientOrderId;
+    private int adminOrderId;
+    private int updateAdminOrderId;
+    ProgressBar progressBar;
+    ConstraintLayout linearLayout;
+    private BroadcastReceiver broadcastReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_conform);
-        price = findViewById(R.id.tvBuyConformPrice);
-        exit = findViewById(R.id.btnBuyConformExit);
+        TextView price = findViewById(R.id.tvBuyConformPrice);
+        AppCompatButton exit = findViewById(R.id.btnBuyConformExit);
         database = FirebaseDatabase.getInstance();
-        auth = FirebaseAuth.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        progressBar = findViewById(R.id.pbBuyConformProgressBar);
+        linearLayout= findViewById(R.id.llBuyConformActivityLayout);
+        //        check internet
+        broadcastReceiver = new NetworkBroadcast();
+        registerReceiver(broadcastReceiver,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         Intent intent = getIntent();
         String no_of_product = intent.getStringExtra("noOfProduct");
         String totalprice =  intent.getStringExtra("price");
+        String authId = intent.getStringExtra("userId");
+        clientOrderId = intent.getIntExtra("clientOrderId",0);
+        adminOrderId  = intent.getIntExtra("adminOrderId",0);
+        updateAdminOrderId = adminOrderId+1;
+        int updateClientOrderId = clientOrderId + 1;
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
         String strDate = formatter.format(date);
 
         DateFormat time = new SimpleDateFormat("hh:mm aa");
-        String StrTime = time.format(new Date()).toString();
+        String StrTime = time.format(new Date());
 
-        Toast.makeText(this, "d="+strDate+"\n"+StrTime, Toast.LENGTH_SHORT).show();
         OrderModel model = new OrderModel();
         model.setPrice(totalprice);
         model.setNoOfProduct(no_of_product);
-        model.setStatus("In Root");
+        model.setStatus("Order Placed");
         model.setDate(strDate);
         model.setTime(StrTime+"");
+        model.setOrderId(clientOrderId);
 
-
-        database.getReference().child("Users").child(auth.getUid()).child("Order").child("miniOrder").child(strDate+" "+StrTime).setValue(model)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-//                                Toast.makeText(BuyConformActivity.this,"order place",Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-
-        PaymentModel paymentModel = new PaymentModel();
-        paymentModel.setAmount(totalprice);
-        paymentModel.setNoOfProduct(no_of_product);
-        paymentModel.setDate(strDate);
-        paymentModel.setPay("0");
-        paymentModel.setTime(StrTime);
-        database.getReference().child("Users").child(auth.getUid()).child("Payment").child("payment list").child(strDate+" "+StrTime).setValue(paymentModel);
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(BuyConformActivity.this, MainActivity.class));
-            }
-        });
         price.setText(totalprice);
 
+        exit.setOnClickListener(v -> {
+            startActivity(new Intent(BuyConformActivity.this, MainActivity.class));
+            finish();
+        });
 
-        database.getReference().child("Users").child(auth.getUid()).child("Cart").child("list")
-                .addValueEventListener(new ValueEventListener() {
+//          update client order id
+        database.getReference().child("Profiles").child(authId).child("orderId").setValue(updateClientOrderId);
+//          update admin order id and add order in admin all order
+        AllOrderModel model1 = new AllOrderModel();
+        database.getReference().child("Profiles").child(authId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ProfileModel model2 = snapshot.getValue(ProfileModel.class);
+                model1.setId(authId);
+                model1.setDate(strDate);
+                model1.setStatus("Order Placed");
+                model1.setImage(Objects.requireNonNull(model2).getProfilePhoto());
+                model1.setPrice(totalprice);
+                model1.setNoOfProduct(no_of_product);
+                model1.setMethode("COD");
+                model1.setTime(StrTime);
+                model1.setName(model2.getName());
+                model1.setOrderId(clientOrderId);
+                model1.setAdminOrderId(adminOrderId);
+                model1.setSeen(false);
+                database.getReference().child("Hatti").child("id").child("orderId").setValue(updateAdminOrderId)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()){
+                                database.getReference().child("Hatti").child("All Order").child(adminOrderId+"").setValue(model1);
+                            }
+                        });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(BuyConformActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+//        add new order number
+        database.getReference().child("Hatti").child("no order").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int noOfOrder = snapshot.getValue(int.class);
+                int update = noOfOrder+1;
+                database.getReference().child("Hatti").child("no order").setValue(update);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(BuyConformActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        // add order
+        database.getReference().child("Users").child(Objects.requireNonNull(auth.getCurrentUser()).getUid()).child("Cart").child("list")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         productList.clear();
                         for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                             CartModel products = dataSnapshot.getValue(CartModel.class);
+                            assert products != null;
                             database.getReference().child("categorys").child("product category").child(products.getCategory()).child(products.getProductId())
                                     .addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot){
                                             categoryProductModel productDetails = snapshot.getValue(categoryProductModel.class);
                                             productListModel full = new productListModel();
+                                            assert productDetails != null;
                                             full.setImage(productDetails.getImage());
                                             full.setName(productDetails.getName());
                                             full.setPrice(productDetails.getPrice());
                                             full.setMrp(productDetails.getMrp());
                                             full.setQty(products.getQty()+"");
 
-                                            Integer amount = Integer.valueOf(full.getPrice());
-                                            int price = amount.intValue();
+                                            int price = Integer.parseInt(full.getPrice());
                                             int totalAmount = price*products.getQty();
                                             full.setTotalPrice(totalAmount+"");
 
@@ -119,11 +171,28 @@ public class BuyConformActivity extends AppCompatActivity {
                                             detailModel.setDate(strDate);
                                             detailModel.setTime(StrTime);
                                             detailModel.setMethode("COD");
-                                            detailModel.setPrice(productDetails.getPrice());
+                                            detailModel.setPrice(totalprice);
                                             detailModel.setNoOfProduct(no_of_product);
-                                            detailModel.setStatus("In Root");
-                                            database.getReference().child("Users").child(auth.getUid()).child("Order").child("fullOrder").child(strDate+" "+StrTime).child("detail").setValue(detailModel);
-                                            database.getReference().child("Users").child(auth.getUid()).child("Order").child("fullOrder").child(strDate+" "+StrTime).child("list").child(productDetails.getCategory()+productDetails.getProductId()).setValue(full);
+                                            detailModel.setStatus("Order Place");
+                                            detailModel.setOrderId(clientOrderId);
+                                            detailModel.setAdminOrderId(adminOrderId);
+                                            database.getReference().child("Users").child(authId).child("Order").child("fullOrder").child(clientOrderId+"").child("detail").setValue(detailModel);
+                                            database.getReference().child("Users").child(authId).child("Order").child("fullOrder").child(clientOrderId+"").child("list").child(productDetails.getCategory()+productDetails.getProductId()).setValue(full);
+                                            //        add mini order
+                                            database.getReference().child("Users").child(authId).child("Order").child("miniOrder").child(clientOrderId+"").setValue(model);
+
+//                                          add payment
+                                            PaymentModel paymentModel = new PaymentModel();
+                                            paymentModel.setAmount(totalprice);
+                                            paymentModel.setNoOfProduct(no_of_product);
+                                            paymentModel.setDate(strDate);
+                                            paymentModel.setPay("0");
+                                            paymentModel.setTime(StrTime);
+                                            paymentModel.setOrderId(clientOrderId);
+                                            database.getReference().child("Users").child(authId).child("Payment").child("payment list").child(clientOrderId+"").setValue(paymentModel);
+                                            database.getReference().child("Users").child(authId).child("Cart").child("list").child(products.getCategory()+products.getProductId()).removeValue();
+
+
                                         }
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError error) {
@@ -131,11 +200,28 @@ public class BuyConformActivity extends AppCompatActivity {
                                         }
                                     });
                         }
+//                        Toast.makeText(BuyConformActivity.this,"order place",Toast.LENGTH_SHORT).show();
+                        com.example.hatti.notification.FcmNotificationsSender notificationsSender = new com.example.hatti.notification.FcmNotificationsSender("/topics/admin","Order","New Order Place by client "+model1.getName(),getApplicationContext(), BuyConformActivity.this);
+                        notificationsSender.SendNotifications();
+                        linearLayout.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(BuyConformActivity.this, "not get data from cart", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadcastReceiver);
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        startActivity(new Intent(BuyConformActivity.this,MainActivity.class));
     }
 }

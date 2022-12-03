@@ -37,14 +37,13 @@ public class ProductPriceListAdapter extends RecyclerView.Adapter<ProductPriceLi
     @Override
     public void onBindViewHolder(@NonNull ProductPriceListAdapter.ViewHolder holder, int position) {
         ProductListPriceModel model = list.get(position);
-        Glide.with(context).load(list.get(position).getImage()).apply(new RequestOptions().placeholder(R.drawable.ic_baseline_home_24)).into(holder.image);
+        Glide.with(context).load(list.get(position).getImage()).apply(new RequestOptions().placeholder(R.drawable.placeholder)).into(holder.image);
         holder.name.setText(model.getName());
-        holder.price.setText(model.getPrice());
-        holder.mrp.setText(model.getMrp());
+        holder.price.setText("Rs. "+model.getPrice());
+        holder.mrp.setText("Rs. "+model.getMrp());
         holder.qty.setText(model.getQty());
-//        Integer amount = Integer.valueOf(model.getPrice());
-//        int price = amount.intValue()*model.getQty();
-        holder.totalPrice.setText(model.getTotalPrice());
+
+        holder.totalPrice.setText("Rs. "+model.getTotalPrice());
 
     }
 

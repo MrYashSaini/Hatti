@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.MyListActivity">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -39,20 +39,63 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvMylistCategory"
+            <LinearLayout
+                android:id="@+id/llMyListBackgroundLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/my_list_sample" />
+                android:orientation="vertical"
+                android:visibility="gone">
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="150dp"
+                    android:src="@drawable/my_list_background" />
+                <TextView
+                    android:id="@+id/tvCartSelectProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add favourite products"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#474747"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/pbMyListProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="250dp"
+                android:visibility="gone"
+                />
+
+            <LinearLayout
+                android:id="@+id/llMyListActivityLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMylistCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/my_list_sample" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>
@@ -78,7 +121,7 @@
             android:paddingLeft="20dp"
             android:text="Remove All"
             android:textColor="@color/foreground_color"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -93,7 +136,7 @@
             android:paddingLeft="10dp"
             android:text="All Add to Cart"
             android:textColor="@color/background_gray_color"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

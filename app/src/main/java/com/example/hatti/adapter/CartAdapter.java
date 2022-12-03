@@ -44,80 +44,70 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         int maxQty = 500;
         int minQty = 1;
         categoryProductModel model = list.get(position);
-        Glide.with(context).load(list.get(position).getImage()).apply(new RequestOptions().placeholder(R.drawable.ic_baseline_home_24)).into(holder.productImage);
+        Glide.with(context).load(list.get(position).getImage()).apply(new RequestOptions().placeholder(R.drawable.placeholder)).into(holder.productImage);
         holder.productName.setText(model.getName());
         holder.productPrice.setText(model.getPrice());
         holder.productMrp.setText(model.getMrp());
         String q = Integer.toString(model.getQty());
         holder.productQty.setText(q);
-        holder.increase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String qty = String.valueOf(holder.productQty.getText());
-                int productQty = 0;
-                try{
-                    productQty = Integer.parseInt(qty);
-                }
-                catch (Exception e){
-                    Float obj = Float.valueOf(qty);
-                    productQty = obj.intValue();
-                }
-                if (productQty<maxQty){
-                    productQty += 1;
-                    holder.productQty.setText(productQty+"");
-                }
-                else {
-                    holder.productQty.setText(maxQty+"");
-                }
-                categoryProductModel model1 = new categoryProductModel();
-                model1.setQty(productQty);
-                model1.setCategory(model.getCategory());
-                model1.setProductId(model.getProductId());
-                database.getReference().child("Users").child(auth.getUid()).child("Cart").child("list").child(model.getCategory()+model.getProductId()).setValue(model1);
+        holder.increase.setOnClickListener(v -> {
+            String qty = String.valueOf(holder.productQty.getText());
+            int productQty = 0;
+            try{
+                productQty = Integer.parseInt(qty);
             }
+            catch (Exception e){
+                Float obj = Float.valueOf(qty);
+                productQty = obj.intValue();
+            }
+            if (productQty<maxQty){
+                productQty += 1;
+                holder.productQty.setText(productQty+"");
+            }
+            else {
+                holder.productQty.setText(maxQty+"");
+            }
+            categoryProductModel model1 = new categoryProductModel();
+            model1.setQty(productQty);
+            model1.setCategory(model.getCategory());
+            model1.setProductId(model.getProductId());
+            database.getReference().child("Users").child(auth.getUid()).child("Cart").child("list").child(model.getCategory()+model.getProductId()).setValue(model1);
         });
-        holder.decrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String qty = String.valueOf(holder.productQty.getText());
-                int productQty = 0;
-                try{
-                    productQty = Integer.parseInt(qty);
-                }
-                catch (Exception e){
-                    Float obj = Float.valueOf(qty);
-                    productQty = obj.intValue();
-                }
-                if (productQty>minQty ){
-                    productQty -= 1;
-                    holder.productQty.setText(productQty+"");
-                }
-                else {
-                    holder.productQty.setText(minQty+"");
-                }
-                categoryProductModel model1 = new categoryProductModel();
-                model1.setQty(productQty);
-                model1.setCategory(model.getCategory());
-                model1.setProductId(model.getProductId());
-                database.getReference().child("Users").child(auth.getUid()).child("Cart").child("list").child(model.getCategory()+model.getProductId()).setValue(model1);
+        holder.decrease.setOnClickListener(v -> {
+            String qty = String.valueOf(holder.productQty.getText());
+            int productQty = 0;
+            try{
+                productQty = Integer.parseInt(qty);
+            }
+            catch (Exception e){
+                Float obj = Float.valueOf(qty);
+                productQty = obj.intValue();
+            }
+            if (productQty>minQty ){
+                productQty -= 1;
+                holder.productQty.setText(productQty+"");
+            }
+            else {
+                holder.productQty.setText(minQty+"");
+            }
+            categoryProductModel model1 = new categoryProductModel();
+            model1.setQty(productQty);
+            model1.setCategory(model.getCategory());
+            model1.setProductId(model.getProductId());
 
-            }
+            database.getReference().child("Users").child(auth.getUid()).child("Cart").child("list").child(model.getCategory()+model.getProductId()).setValue(model1);
+
         });
-        holder.removeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                database.getReference().child("Users").child(auth.getUid()).child("Cart").child(model.getCategory()+model.getProductId()).removeValue();
-                notifyDataSetChanged();
-            }
+        holder.removeButton.setOnClickListener(v -> {
+            database.getReference().child("Users").child(auth.getUid()).child("Cart").child("list").child(model.getCategory()+model.getProductId()).removeValue();
+//                database.getReference().child("Users").child(auth.getUid()).child("Cart").child(model.getCategory()+model.getProductId()).removeValue();
+            notifyDataSetChanged();
         });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ProductDetailsActivity.class);
-                intent.putExtra("category",list.get(position).getCategory());
-                intent.putExtra("id",list.get(position).getProductId());
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProductDetailsActivity.class);
+            intent.putExtra("category",list.get(position).getCategory());
+            intent.putExtra("id",list.get(position).getProductId());
+            context.startActivity(intent);
         });
     }
 
@@ -126,7 +116,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView productImage,increase,decrease;
         TextView productName,productPrice,productMrp;
         EditText productQty;

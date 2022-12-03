@@ -20,6 +20,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hatti.R;
 import com.example.hatti.activity.MyListActivity;
 import com.example.hatti.fragments.CategoryItemsFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -27,6 +32,8 @@ import java.util.List;
 public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder> {
     private List<String> miniList;
     Context context2;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     public NestedAdapter(List<String> miniList,Context context2) {
         this.miniList = miniList;
@@ -46,7 +53,7 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                database.getReference().child("Users").child(auth.getUid()).child("CategoryShow").child("category").setValue(miniList.get(position));
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 CategoryItemsFragment fragment = new CategoryItemsFragment();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,fragment).addToBackStack(null).commit();

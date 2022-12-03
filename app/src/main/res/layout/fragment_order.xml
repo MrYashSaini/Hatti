@@ -22,13 +22,49 @@
                 android:layout_marginStart="20dp"
                 android:text="@string/menu_order"
                 android:textColor="#000"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
+            <LinearLayout
+                android:id="@+id/llOrderBackgroundLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="150dp"
+                    android:src="@drawable/box" />
+                <TextView
+                    android:id="@+id/tvCartSelectProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="No Order"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#474747"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/pbOrderProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="250dp"
+                android:visibility="gone"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvOrderList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="gone"
+                android:overScrollMode="never"
                 />
 
         </LinearLayout>

@@ -49,7 +49,7 @@ public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProduct
     @Override
     public void onBindViewHolder(@NonNull CategoryProductAdapter.ViewHolder holder, int position) {
         categoryProductModel model = list.get(position);
-        Glide.with(context).load(list.get(position).getImage()).apply(new RequestOptions().placeholder(R.drawable.ic_baseline_home_24)).into(holder.imageView);
+        Glide.with(context).load(model.getImage2()).apply(new RequestOptions().placeholder(R.drawable.placeholder)).into(holder.imageView);
         holder.productName.setText(model.getName());
         holder.description.setText(model.getDescription());
         holder.price.setText(model.getPrice());

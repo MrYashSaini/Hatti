@@ -41,7 +41,6 @@ public class categoryProductModel {
         this.mrp = mrp;
         this.productId = productId;
         this.category=category;
-
     }
 
     public categoryProductModel(String image, String name, String price, String mrp, String productId, String category, int qty) {

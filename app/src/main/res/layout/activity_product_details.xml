@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:background="#F9F9F9"
     android:layout_height="match_parent"
+    android:overScrollMode="never"
     tools:context=".activity.ProductDetailsActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -41,9 +42,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="-170dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutForCart"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/product_name"
+                android:text="@string/loading"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -97,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:text="Price"
                     android:textColor="#000000"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -111,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/rupees"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -119,27 +121,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="7dp"
-                        android:text="@string/price"
+                        android:text="@string/loading"
                         android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:text="M.R.P."
-                        android:textColor="@color/light_black"
-
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:text="@string/rupees"
+                        android:layout_marginStart="20dp"
+                        android:text="M.R.P."
+                        android:textColor="@color/light_black"
+
                         android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/rupees"
+                        android:textSize="17sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -148,8 +150,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:background="#00000000"
-                        android:text="@string/price"
-                        android:textSize="18sp" />
+                        android:text="@string/loading"
+                        android:textSize="17sp" />
 
                     <View
                         android:layout_width="30dp"
@@ -189,7 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="available"
+                    android:text="@string/loading"
                     android:textColor="#46E11C"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -222,7 +224,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:text="Write here product description for help to user. user get more information by read this."
+                    android:text="@string/loading"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -252,7 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="500gm"
+                    android:text="@string/loading"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -311,7 +313,7 @@
                             android:paddingTop="5dp"
                             android:paddingEnd="10dp"
                             android:paddingBottom="5dp"
-                            android:text="Store in a cool, dry place in an airtight container and preferably refrigerate after opening"
+                            android:text="@string/loading"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -347,7 +349,7 @@
                             android:paddingTop="5dp"
                             android:paddingEnd="10dp"
                             android:paddingBottom="5dp"
-                            android:text="500gm"
+                            android:text="@string/loading"
                             android:textSize="14sp" />
                     </LinearLayout>
                     <View
@@ -382,7 +384,7 @@
                             android:paddingTop="5dp"
                             android:paddingEnd="10dp"
                             android:paddingBottom="5dp"
-                            android:text="Tata"
+                            android:text="@string/loading"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -418,7 +420,7 @@
                             android:paddingTop="5dp"
                             android:paddingEnd="10dp"
                             android:paddingBottom="5dp"
-                            android:text="Company Name"
+                            android:text="@string/loading"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -454,7 +456,7 @@
                             android:paddingTop="5dp"
                             android:paddingEnd="10dp"
                             android:paddingBottom="5dp"
-                            android:text="Vegetarian"
+                            android:text="@string/loading"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -532,8 +534,8 @@
 
                     <ImageButton
                         android:id="@+id/ibIncreaseQty"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="60dp"
                         android:backgroundTint="#00000000"
@@ -632,15 +634,15 @@
                 <include layout="@layout/horizontal_scroll_layout" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:orientation="horizontal">-->
 
-                <include layout="@layout/horizontal_scroll_layout2" />
+<!--                <include layout="@layout/horizontal_scroll_layout2" />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 <!--            <LinearLayout-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->

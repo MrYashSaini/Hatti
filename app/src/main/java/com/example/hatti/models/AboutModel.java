@@ -1,24 +1,24 @@
 package com.example.hatti.models;
 
 public class AboutModel {
-    String phone,instagram,facebook,gmail;
+    String phoneNo,instagram,facebook,gmail;
 
     public AboutModel() {
     }
 
-    public AboutModel(String phone, String instagram, String facebook, String gmail) {
-        this.phone = phone;
+    public AboutModel(String phoneNo, String instagram, String facebook, String gmail) {
+        this.phoneNo = phoneNo;
         this.instagram = instagram;
         this.facebook = facebook;
         this.gmail = gmail;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNo(String phone) {
+        this.phoneNo = phone;
     }
 
     public String getInstagram() {

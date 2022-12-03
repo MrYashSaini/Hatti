@@ -1,8 +1,11 @@
 package com.example.hatti.fragments;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.hatti.R;
@@ -24,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class NotificationFragment extends Fragment {
@@ -31,6 +37,8 @@ public class NotificationFragment extends Fragment {
     FirebaseAuth auth;
     RecyclerView rvNotification;
     ArrayList<NotificationModel> list=new ArrayList<>();
+    ProgressBar progressBar;
+    LinearLayout linearLayout,backgroundLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +46,19 @@ public class NotificationFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         rvNotification = view.findViewById(R.id.rvNotificationList);
+        progressBar = view.findViewById(R.id.pbNotificationProgressBar);
+        linearLayout = view.findViewById(R.id.llNotificationFragmentLayout);
+        backgroundLayout = view.findViewById(R.id.llNotificationBackgroundLayout);
+//        Toolbar toolbar = view.findViewById(R.id.toolbar);
+//        toolbar.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_menu,null);
+//                toolbar.setNavigationIcon(d);
+//            }
+//        });
+
+        database.getReference().child("Profiles").child(auth.getCurrentUser().getUid()).child("notificationNo").setValue(0);
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
@@ -56,11 +77,19 @@ public class NotificationFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         list.clear();
+                        if (snapshot.getChildrenCount()!=0){
+                            progressBar.setVisibility(View.VISIBLE);
+                        }else {
+                            backgroundLayout.setVisibility(View.VISIBLE);
+                        }
                         for(DataSnapshot snapshot1 : snapshot.getChildren()){
                             NotificationModel model = snapshot1.getValue(NotificationModel.class);
                             list.add(model);
                         }
+                        Collections.reverse(list);
                         adapter.notifyDataSetChanged();
+                        linearLayout.setVisibility(view.VISIBLE);
+                        progressBar.setVisibility(view.GONE);
                     }
 
                     @Override

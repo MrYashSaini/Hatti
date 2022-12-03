@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutForCategoryFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,11 +24,52 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/llCartBackgroundLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="150dp"
+                    android:src="@drawable/cart_bg" />
+                <TextView
+                    android:id="@+id/tvCartSelectProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_product"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="30dp"
+                    android:textColor="#474747"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+            <ProgressBar
+                android:id="@+id/pbCartProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="250dp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+            android:id="@+id/llCartFragmentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCartProductShow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:overScrollMode="never"
                 tools:listitem="@layout/cart_item_sample">
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -50,7 +92,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/category_item_show_bg"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -132,10 +175,10 @@
             <TextView
                 android:id="@+id/tvCartRemoveAll"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="60dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="60dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:background="@color/background_gray_color"
@@ -145,8 +188,11 @@
                 android:paddingStart="20dp"
                 android:text="Remove all Item"
                 android:textColor="@color/foreground_color"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
+
+        </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>
@@ -159,6 +205,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
+            android:id="@+id/tvCartCall"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -168,7 +215,7 @@
             android:paddingStart="20dp"
             android:text="Call for Buy"
             android:textColor="@color/foreground_color"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -180,7 +227,7 @@
             android:gravity="center"
             android:text="Buy"
             android:textColor="@color/background_gray_color"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </LinearLayout>

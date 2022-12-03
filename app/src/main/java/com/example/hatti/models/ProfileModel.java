@@ -1,36 +1,55 @@
 package com.example.hatti.models;
 
 public class ProfileModel {
-    String name,gmail,phone,state,dob,city,address,gender,profile_photo,shop_photo;
-
+    String name,gmail,phoneNo,state,dob,city,address,gender,profilePhoto,shopPhoto,hattiId;
+    int notificationNo;
     public ProfileModel() {}
 
-    public ProfileModel(String name, String gmail, String phone, String state, String dob, String city, String address, String gender,String profile_photo,String shop_photo) {
+    public ProfileModel(String name, String gmail, String phoneNo, String state, String dob, String city, String address, String gender, String profilePhoto, String shopPhoto,String hattiId,int notificationNo) {
         this.name = name;
         this.gmail = gmail;
-        this.phone = phone;
+        this.phoneNo = phoneNo;
         this.state = state;
         this.dob = dob;
         this.city = city;
         this.address = address;
-        this.profile_photo = profile_photo;
-        this.shop_photo = shop_photo;
+        this.gender = gender;
+        this.profilePhoto = profilePhoto;
+        this.shopPhoto = shopPhoto;
+        this.hattiId = hattiId;
+        this.notificationNo = notificationNo;
     }
 
-    public String getProfile_photo() {
-        return profile_photo;
+    public int getNotificationNo() {
+        return notificationNo;
     }
 
-    public void setProfile_photo(String profile_photo) {
-        this.profile_photo = profile_photo;
+    public void setNotificationNo(int notificationNo) {
+        this.notificationNo = notificationNo;
     }
 
-    public String getShop_photo() {
-        return shop_photo;
+    public String getHattiId() {
+        return hattiId;
     }
 
-    public void setShop_photo(String shop_photo) {
-        this.shop_photo = shop_photo;
+    public void setHattiId(String hattiId) {
+        this.hattiId = hattiId;
+    }
+
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
+
+    public String getShopPhoto() {
+        return shopPhoto;
+    }
+
+    public void setShopPhoto(String shopPhoto) {
+        this.shopPhoto = shopPhoto;
     }
 
     public String getName() {
@@ -49,12 +68,12 @@ public class ProfileModel {
         this.gmail = gmail;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNo(String phone) {
+        this.phoneNo = phone;
     }
 
     public String getState() {

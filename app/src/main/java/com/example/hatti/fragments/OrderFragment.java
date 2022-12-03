@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.hatti.R;
 import com.example.hatti.adapter.OrderAdapter;
@@ -21,12 +24,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
 
 public class OrderFragment extends Fragment {
+    ProgressBar progressBar;
     FirebaseAuth auth;
     FirebaseDatabase database;
     ArrayList<OrderModel> list = new ArrayList<>();
     RecyclerView orderRecyclerView;
+    LinearLayout backgroundLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,27 +41,37 @@ public class OrderFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         orderRecyclerView = view.findViewById(R.id.rvOrderList);
-
+        progressBar = view.findViewById(R.id.pbOrderProgressBar);
+        backgroundLayout = view.findViewById(R.id.llOrderBackgroundLayout);
         OrderAdapter adapter = new OrderAdapter(getContext(),list);
         orderRecyclerView.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         orderRecyclerView.setLayoutManager(linearLayoutManager);
 
-        database.getReference().child("Users").child(auth.getUid()).child("Order").child("miniOrder")
+
+        database.getReference().child("Users").child(Objects.requireNonNull(auth.getUid())).child("Order").child("miniOrder")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         list.clear();
+                        if (snapshot.getChildrenCount()!=0){
+                            progressBar.setVisibility(View.VISIBLE);
+                        }else {
+                            backgroundLayout.setVisibility(View.VISIBLE);
+                        }
                         for(DataSnapshot snapshot1 : snapshot.getChildren()){
                             OrderModel model = snapshot1.getValue(OrderModel.class);
                             list.add(model);
                         }
+                        Collections.reverse(list);
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        orderRecyclerView.setVisibility(View.VISIBLE);
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        Toast.makeText(getContext(), ""+error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 

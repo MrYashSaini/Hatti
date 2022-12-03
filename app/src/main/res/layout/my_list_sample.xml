@@ -11,10 +11,10 @@
         android:id="@+id/ivListProductImage"
         android:layout_width="130dp"
         android:layout_height="150dp"
-        android:scaleType="center"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/banner"
+        app:srcCompat="@drawable/placeholder"
         android:contentDescription="@string/product_image" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="7dp"
         android:maxLines="1"
-        android:text="@string/product_name"
+        android:text="@string/loading"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="7dp"
-        android:text="@string/price"
+        android:text="@string/loading"
         android:textColor="@color/light_black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -57,7 +57,7 @@
         android:paddingEnd="40dp"
         android:text="@string/add"
         android:textColor="@color/background_gray_color"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/ivListProductImage"
         app:layout_constraintStart_toStartOf="@+id/textView3" />
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:maxLines="2"
-        android:text="@string/product_description"
+        android:text="@string/loading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvListProductName"
@@ -91,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:text="@string/price"
+        android:text="@string/loading"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView22"
         app:layout_constraintStart_toEndOf="@+id/textView22" />

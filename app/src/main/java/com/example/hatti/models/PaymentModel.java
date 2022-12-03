@@ -2,26 +2,36 @@ package com.example.hatti.models;
 
 public class PaymentModel {
     String NoOfProduct,Amount,Pay,Date,Time,due;
+    int orderId;
 
 
     public PaymentModel() {
     }
 
     public PaymentModel(String noOfProduct, String amount, String pay, String date, String time) {
-        NoOfProduct = noOfProduct;
-        Amount = amount;
-        Pay = pay;
-        Date = date;
-        Time = time;
+        this.NoOfProduct = noOfProduct;
+        this.Amount = amount;
+        this.Pay = pay;
+        this.Date = date;
+        this.Time = time;
     }
 
-    public PaymentModel(String noOfProduct, String amount, String pay, String date, String time, String due) {
+    public PaymentModel(String noOfProduct, String amount, String pay, String date, String time, String due, int orderId) {
         NoOfProduct = noOfProduct;
         Amount = amount;
         Pay = pay;
         Date = date;
         Time = time;
         this.due = due;
+        this.orderId = orderId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public String getDue() {

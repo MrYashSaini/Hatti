@@ -2,6 +2,7 @@ package com.example.hatti.models;
 
 public class OrderModel {
     String date,time,noOfProduct,status,price,methode;
+    int orderId,adminOrderId;
 
     public OrderModel(String date, String time, String noOfProduct, String status, String price) {
         this.date = date;
@@ -11,16 +12,35 @@ public class OrderModel {
         this.price = price;
     }
 
-    public OrderModel(String date, String time, String noOfProduct, String status, String price, String methode) {
+    public OrderModel(String date, String time, String noOfProduct, String status, String price, String methode,int orderId, int adminOrderId) {
         this.date = date;
         this.time = time;
         this.noOfProduct = noOfProduct;
         this.status = status;
         this.price = price;
         this.methode = methode;
+        this.orderId = orderId;
+        this.adminOrderId = adminOrderId;
+
+    }
+
+    public int getAdminOrderId() {
+        return adminOrderId;
+    }
+
+    public void setAdminOrderId(int adminOrderId) {
+        this.adminOrderId = adminOrderId;
     }
 
     public OrderModel() {
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public String getMethode() {
