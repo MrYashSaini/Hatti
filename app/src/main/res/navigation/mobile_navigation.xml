@@ -7,54 +7,54 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.hatti.fragments.HomeFragment"
+        android:name="com.echatti.hatti.fragments.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_category"
-        android:name="com.example.hatti.fragments.CategoryFragment"
+        android:name="com.echatti.hatti.fragments.CategoryFragment"
         android:label="@string/menu_category"
         tools:layout="@layout/fragment_category" />
 
     <fragment
         android:id="@+id/nav_order"
-        android:name="com.example.hatti.fragments.OrderFragment"
+        android:name="com.echatti.hatti.fragments.OrderFragment"
         android:label="@string/menu_order"
         tools:layout="@layout/fragment_order" />
     <fragment
         android:id="@+id/nav_notification"
-        android:name="com.example.hatti.fragments.NotificationFragment"
+        android:name="com.echatti.hatti.fragments.NotificationFragment"
         android:label="@string/menu_notification"
         tools:layout="@layout/fragment_notification" />
     <activity
         android:id="@+id/nav_Account"
-        android:name="com.example.hatti.account.ProfileSetupActivity"
+        android:name="com.echatti.hatti.account.ProfileSetupActivity"
         android:label="@string/menu_account"
         tools:layout="@layout/activity_profile_setup"/>
     <activity
         android:id="@+id/nav_logout"
-        android:name="com.example.hatti.activity.LogOutActivity"
+        android:name="com.echatti.hatti.activity.LogOutActivity"
         android:label="@string/menu_logout"
         tools:layout="@layout/activity_log_out"/>
     <activity
         android:id="@+id/nav_contact"
-        android:name="com.example.hatti.activity.ContactActivity"
+        android:name="com.echatti.hatti.activity.ContactActivity"
         android:label="@string/menu_contact"
         tools:layout="@layout/activity_contact"/>
     <activity
         android:id="@+id/nav_about"
-        android:name="com.example.hatti.activity.AboutActivity"
+        android:name="com.echatti.hatti.activity.AboutActivity"
         android:label="@string/menu_about"
         tools:layout="@layout/activity_about"/>
     <activity
         android:id="@+id/nav_myList"
-        android:name="com.example.hatti.activity.MyListActivity"
+        android:name="com.echatti.hatti.activity.MyListActivity"
         android:label="@string/menu_myList"
         tools:layout="@layout/activity_my_list"/>
     <activity
         android:id="@+id/nav_payment_wallet"
-        android:name="com.example.hatti.activity.PaymentWalletActivity"
+        android:name="com.echatti.hatti.activity.PaymentWalletActivity"
         android:label="@string/menu_payment_wallet"
         tools:layout="@layout/activity_payment_wallet"/>
 

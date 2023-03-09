@@ -41,20 +41,38 @@
         >
 <!--        app:popupTheme="@style/Theme.Hatti.PopupOverlay"-->
 <!--        android:theme="@style/Theme.Hatti"-->
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView32"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/logo" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="serif"
+                android:text="@string/hatti"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.SearchView

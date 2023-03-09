@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contact"
+            android:text="@string/contact"
             android:textColor="@color/foreground_color"
             android:textSize="24sp"
             android:textStyle="bold"/>
@@ -52,10 +52,11 @@
             android:layout_height="1dp"
             android:background="@color/foreground_color"/>
         <TextView
+            android:id="@+id/tvContactDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hatti is a best product suppler Hatti is a best product suppler Hatti is a best product supplerHatti is a best product suppler"
-            android:textColor="@color/foreground_color"
+            android:text="@string/contact_detail"
+            android:textColor="@color/white"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="30dp"
             android:justificationMode="inter_word"
@@ -80,7 +81,7 @@
 
             <TextView
                 android:id="@+id/tvPhoneNoForContact"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
@@ -95,7 +96,7 @@
                 android:layout_height="48dp"
                 android:layout_marginEnd="15dp"
                 android:backgroundTint="@color/foreground_color"
-                android:text="Call"
+                android:text="@string/call"
                 android:textColor="@color/background_gray_color"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -125,7 +126,7 @@
                 android:layout_marginStart="10dp"
                 android:text="@string/loading"
                 android:textColor="@color/teal_200"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -148,8 +149,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/loading"
+                android:maxLines="2"
+                android:layout_marginEnd="40dp"
                 android:textColor="@color/teal_200"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -172,15 +175,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/loading"
+                android:maxLines="2"
+                android:layout_marginEnd="40dp"
                 android:textColor="@color/teal_200"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
         <Button
             android:id="@+id/btnBackForContact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/foreground_color"
-            android:text="Back"
+            android:text="@string/back"
             android:textColor="@color/background_gray_color"
             android:textStyle="bold"
             android:layout_gravity="center"

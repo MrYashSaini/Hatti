@@ -42,10 +42,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="3dp"
         android:text="@string/loading"
-        android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white"
         android:textSize="18sp"
-        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivNavHeaderProfileImg" />
@@ -63,17 +63,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="@string/hatti_id" />
+            android:text="@string/hatti_id"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvHattiId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:textColor="@color/black"
-            android:text="@string/loading" />
+            android:text="@string/loading"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

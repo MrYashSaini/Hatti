@@ -7,9 +7,8 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpProductImages"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="250dp"
         android:background="@color/white"
-        android:layout_marginTop="10dp"
         android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

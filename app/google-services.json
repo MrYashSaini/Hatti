@@ -1,15 +1,53 @@
 {
   "project_info": {
     "project_number": "254007106836",
+    "firebase_url": "https://hatti-database-default-rtdb.firebaseio.com",
     "project_id": "hatti-database",
     "storage_bucket": "hatti-database.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:254007106836:android:8db0a95a547ee74c22b601",
+        "mobilesdk_app_id": "1:254007106836:android:d86eba9b693a5dcc22b601",
         "android_client_info": {
-          "package_name": "com.example.hatti"
+          "package_name": "com.echatti.hatti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254007106836-tmabrpgglsh7uf7c1md4i9djv22utm9r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.echatti.hatti",
+            "certificate_hash": "1bdfa77e534c671536fa717f20bf38b4ec53e435"
+          }
+        },
+        {
+          "client_id": "254007106836-mbjrq104jsn9om24svlaod76cnefkfg8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNEC62NvwjEQzyHDsPcD-uBlAmuhDRTT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254007106836-mbjrq104jsn9om24svlaod76cnefkfg8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254007106836:android:45381c983de855e822b601",
+        "android_client_info": {
+          "package_name": "com.example.hattiadmin"
         }
       },
       "oauth_client": [
