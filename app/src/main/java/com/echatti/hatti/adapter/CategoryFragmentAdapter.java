@@ -50,7 +50,7 @@ public class CategoryFragmentAdapter extends RecyclerView.Adapter<CategoryFragme
         }
         NestedAdapter adapter = new NestedAdapter(list,context);
         holder.miniCategoryRecyclerView.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
-        holder.miniCategoryRecyclerView.setHasFixedSize(true);
+//        holder.miniCategoryRecyclerView.setHasFixedSize(true);
         holder.miniCategoryRecyclerView.setAdapter(adapter);
         holder.linearLayout.setOnClickListener(v -> {
             model.setExpandable(!model.isExpandable());

@@ -1,7 +1,20 @@
 package com.echatti.hatti.models;
+import com.google.gson.annotations.SerializedName;
 
-public class AboutModel {
-    String phoneNo,instagram,facebook,gmail;
+import java.io.Serializable;
+
+
+public class AboutModel implements Serializable {
+    @SerializedName("Hatti")
+
+    private String phoneNo;
+    @SerializedName("Hatti")
+
+    private String instagram;
+    @SerializedName("Hatti")
+
+    private String facebook;
+    private String gmail;
 
     public AboutModel() {
     }

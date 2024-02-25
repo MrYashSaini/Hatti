@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".account.NewCreateAccountActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp">
+
+            <ImageView
+                android:id="@+id/ivCreateAccountShopPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/placeholder" />
+
+            <ImageView
+                android:id="@+id/ivCreateAccountAddShopImg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCreateAccountShopPhoto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/plus3" />
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/ivCreateAccountProfilePhoto"-->
+            <!--                android:layout_width="150dp"-->
+            <!--                android:layout_height="150dp"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                android:layout_marginTop="-80dp"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/ivCreateAccountShopPhoto"-->
+            <!--                app:srcCompat="@drawable/user" />-->
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivCreateAccountProfilePhoto"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="-80dp"
+                android:src="@drawable/user"
+                app:layout_constraintEnd_toEndOf="@+id/ivCreateAccountShopPhoto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivCreateAccountShopPhoto" />
+
+            <ImageView
+                android:id="@+id/ivCreateAccountAddClientimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCreateAccountProfilePhoto"
+                app:layout_constraintEnd_toEndOf="@+id/ivCreateAccountProfilePhoto"
+                app:srcCompat="@drawable/plus3"
+                tools:ignore="ImageContrastCheck" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivCreateAccountAddClientimg">
+
+                <EditText
+                    android:id="@+id/etCreateAccountName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/etCreateAccountId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ems="10"
+                    android:hint="@string/hatti_id"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/etCreateAccountGmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ems="10"
+                    android:hint="@string/gmail"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/etCreateAccountAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ems="10"
+                    android:hint="Address"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/etCreateAccountPhoneNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ems="10"
+                    android:hint="Phone No."
+                    android:importantForAutofill="no"
+                    android:inputType="phone"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/etCreateAccountPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ems="10"
+                    android:hint="@string/password"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/etCreateAccountCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ems="10"
+                    android:hint="City"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/etCreateAccountState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ems="10"
+                    android:hint="State"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/etCreateAccountDob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ems="10"
+                    android:hint="DOB"
+                    android:importantForAutofill="no"
+                    android:inputType="date"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/etCreateAccountGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:ems="10"
+                    android:hint="Gender"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp" />
+
+                <Button
+                    android:id="@+id/btnCreateAccountButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="@string/create_account" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

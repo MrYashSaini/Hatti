@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        createAccount.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,CreateAccountActivity.class)));
+        createAccount.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,NewCreateAccountActivity.class)));
 
         if(auth.getCurrentUser()!=null){
             startActivity(new Intent(LoginActivity.this,MainActivity.class));

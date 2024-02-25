@@ -74,7 +74,7 @@ public class BuyConformActivity extends AppCompatActivity {
         String totalprice =  intent.getStringExtra("price");
         String authId = intent.getStringExtra("userId");
         clientOrderId = intent.getIntExtra("clientOrderId",0);
-        adminOrderId  = intent.getIntExtra("adminOrderId",0);
+            adminOrderId  = intent.getIntExtra("adminOrderId",0);
         updateAdminOrderId = adminOrderId+1;
         int updateClientOrderId = clientOrderId + 1;
         Date date = new Date();

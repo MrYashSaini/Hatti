@@ -1,6 +1,7 @@
 package com.echatti.hatti.account;
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -17,11 +18,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.echatti.hatti.R;
 import com.echatti.hatti.models.AboutModel;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -48,19 +53,47 @@ public class CreateAccountActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        DocumentReference docRef = db.collection("Contact").document("contact");
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                AboutModel model = document.toObject(AboutModel.class);
-                facebook.setText(model.getFacebook());
-                instagram.setText(model.getInstagram());
-                gmail.setText(model.getGmail());
-                phoneNumber.setText(model.getPhoneNo());
-            } else {
-                Log.d(TAG, "get failed with ", task.getException());
+        database.getReference().child("Hatti").child("contactDetails").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    AboutModel model = snapshot.getValue(AboutModel.class);
+                    facebook.setText(model.getFacebook());
+                    instagram.setText(model.getInstagram());
+                    gmail.setText(model.getGmail());
+                    phoneNumber.setText(model.getPhoneNo());
+                }catch (Exception e){
+                    Toast.makeText(CreateAccountActivity.this, ""+e, Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
+
+//        DocumentReference docRef = db.collection("Contact").document("contact");
+//        docRef.get().addOnCompleteListener(task -> {
+//            if (task.isSuccessful()) {
+//                DocumentSnapshot document = task.getResult();
+//                try {
+//                    AboutModel model = document.toObject(AboutModel.class);
+//                    facebook.setText(model.getFacebook());
+//                    instagram.setText(model.getInstagram());
+//                    gmail.setText(model.getGmail());
+//                    phoneNumber.setText(model.getPhoneNo());
+//                }
+//                catch (Exception e){
+//                    Toast.makeText(this, ""+e, Toast.LENGTH_LONG).show();
+//                }
+//
+//            } else {
+//                Log.d(TAG, "get failed with ", task.getException());
+//            }
+//        });
         phone.setOnClickListener(v -> {
             if (Build.VERSION.SDK_INT > 22) {
 

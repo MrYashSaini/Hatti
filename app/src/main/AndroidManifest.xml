@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.echatti.hatti">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -33,6 +37,9 @@
         </activity>
         <activity
             android:name=".activity.PaymentWalletActivity"
+            android:exported="false" />
+        <activity
+            android:name=".account.NewCreateAccountActivity"
             android:exported="false" />
         <activity
             android:name=".activity.OrderDetailActivity"

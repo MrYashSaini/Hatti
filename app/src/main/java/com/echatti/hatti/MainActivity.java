@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarMain.toolbar);
 
-
-
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav_view);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
